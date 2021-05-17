@@ -1,0 +1,75 @@
+import RPi.GPIO as gpio
+import time, math, threading
+
+
+
+class PeopleCounter(object):
+
+
+    def __init__(self, inner_beam_pin, outer_beam_pin):
+        self.inner_beam_pin=inner_beam_pin
+        self.outer_beam_pin=outer_beam_pin
+        self.IN=(0,time.time())
+        self.OUT=(0,time.time())
+        self.count=0
+        self.BB1_LOCK = threading.Lock()    ## Mutex lock for shared counter
+
+        gpio.setmode(gpio.BOARD)
+        gpio.setup(self.inner_beam_pin, gpio.IN)
+        gpio.add_event_detect(self.inner_beam_pin, gpio.RISING, callback=self.break_1)
+
+        gpio.setmode(gpio.BOARD)
+        gpio.setup(self.outer_beam_pin, gpio.IN)
+        gpio.add_event_detect(self.outer_beam_pin, gpio.RISING, callback=self.break_1)
+
+    def break_1(self, channel):
+        self.BB1_list_LOCK.acquire_lock()
+        if(channel==self.outer_beam_pin):   ## If the trigger was outer pin
+            t = time.time()
+	    print
+            (x,y) = self.IN
+            if(x):          ## If inner beam was already broken
+                if((t-y)<1): ## If the timing was right. A person entered
+                    self.count+=1
+                    print(f"Someone ENTERED! People Count:{self.count}")
+                    self.IN =(0,t)
+                    self.OUT=(0,t)
+                else:       ## If the set inner beam flag was too old ignore it
+                    self.IN=(0,t)
+                    self.OUT=(1,t)
+            else:          ## If the inner beam was not set
+                self.IN=(0,t)
+                self.OUT=(1,t)
+            print("Outer Beam!")
+        if(channel==self.inner_beam_pin): ## If the trigger was inner pin
+            t = time.time()
+	    print("InnerBeamTrigger")
+            (x,y) = self.OUT
+            if(x):          ## If outer beam was already broken
+                if((t-y)<1): ## Timing was right. A person left
+                    self.count-=1
+                    print(f"Someone ENTERED! People Count:{self.count}")
+                    self.IN=(0,t)
+                    self.OUT=(0,t)
+
+                else:       ## If outer beam flag was too old, ignore it
+                    self.IN=(1,t)
+                    self.OUT=(0,t)
+            else:         ## If the outer beam was not broken
+                self.IN=(1,t)
+                self.OUT=(0,t)
+            print("Inner Beam!")
+
+        self.BB1_list_LOCK.release_lock()
+
+def main():
+    X = PeopleCounter(19,21)
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        X.__del__()
+        exit(1)
+
+if __name__=='__main__':
+    main()
