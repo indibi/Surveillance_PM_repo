@@ -21,7 +21,7 @@ class ExitHandReader(object):
                 break
             #print(f"Distance = {dist}")
             # Hand is within range
-		if(dist <= 6) or (count==60):
+        if(dist <= 6) or (count==60):
             print("Finished")
             if (count!=60):
                 print("Object in range")
