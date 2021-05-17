@@ -1,4 +1,5 @@
 #Libraries
+#https://peppe8o.com/use-passive-buzzer-with-raspberry-pi-and-python/
 import RPi.GPIO as GPIO
 from time import sleep
 #Disable warnings (optional)
