@@ -21,10 +21,9 @@ class ExitHandReader(object):
                 break
             #print(f"Distance = {dist}")
 			if (dist <= 6) or (count==60): 	# Hand is within range
-
-				if count!=60:
+                if (count!=60):
                     print("Object in range")
-					print(f"Distance = {dist}")
+                    print(f"Distance = {dist}")
                     return OPEN_GATE
                 else:
                     print("Kimse yok ben kacar")
