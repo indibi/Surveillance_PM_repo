@@ -23,4 +23,5 @@ buzzer.start(10) # Set dutycycle to 10
 
 time.sleep(10)
 buzzer.stop()
+#GPIO.cleanup()
 sys.exit()
