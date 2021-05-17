@@ -49,3 +49,5 @@ class HCSR_04(object):
 
 	def __del__(self):
 		gpio.cleanup((self.trig_pin, self.echo_pin))
+
+
