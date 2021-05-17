@@ -1,0 +1,31 @@
+
+
+1. Aşağıdaki linkteki adımları 3. adıma kadar(install tensorflow) takip et. 3. A   adımı yapma:
+   https://www.tensorflow.org/install/pip#1.-install-the-python-development-environment-on-your-system
+
+2. Rasperry Pi için derlenmiş tensorflow yüklemek için aşağıdaki adımları yap:
+
+     32-bir OS için(default Raspian kurduysan bu:
+     https://github.com/bitsy-ai/tensorflow-arm-bin/releases/download/v2.4.0-rc2/tensorflow-2.4.0rc2-cp37-none-linux_armv7l.whl
+
+     64-bit OS için:
+     https://github.com/bitsy-ai/tensorflow-arm-bin/releases/download/v2.4.0-rc2/tensorflow-2.4.0rc2-cp37-none-linux_aarch64.whl
+
+   Ekstra bilgi için aşağıdaki linklere bakabilirsin:
+   https://www.bitsy.ai/3-ways-to-install-tensorflow-on-raspberry-pi/
+   https://github.com/bitsy-ai/tensorflow-arm-bin
+   https://github.com/tensorflow/build/tree/master/raspberry_pi_builds
+
+3. Şu ana kadar pip env ve tensorflow kuruldu, çalışmaya hazır. Required library'ler için şu iki linki takip ettim, yazılan her library'i kurdum.
+Dependancy sorunu yaşamadım şu ana kadar. İlk önce ilk linki takip et, sonra 2. linktekilerle üzerinden geç. 
+Her iki linkte de, üzerinde çalışacagımız,  pip virtualenv kurulumu da anlatılıyor. sıra openCV kurulumuna geldiğinde derlemene gerek yok, 
+"pip install opencv-contrib-python" demen yeterli venv içinde. Bu adımı requirement.txt olarak çıkartmıştım ama discorddan gelmemiş anlaşılan dün akşam. 
+
+Adımlar:
+
+   https://www.pyimagesearch.com/2019/09/16/install-opencv-4-on-raspberry-pi-4-and-raspbian-buster/
+   https://www.pyimagesearch.com/2019/12/09/how-to-install-tensorflow-2-0-on-ubuntu/
+  
+   Ayrıca;
+   pip install dlib
+   pip install imutils 
