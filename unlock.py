@@ -26,7 +26,7 @@ class Door(object):
                 for pin in range(4):
                     GPIO.output(pins[pin],fullstep_order[3-fullstep][pin])
                     time.sleep(0.001)
-    def exit()
+    def exit():
         def entrance():
         # düz donüş
             for i in range(self.turn_number): #200 variable'ı değiştirilebilir açısında göre
