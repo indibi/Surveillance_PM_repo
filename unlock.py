@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO
+import RPi.GPIO as gpio
 import time
 
 
@@ -8,8 +8,8 @@ class Door(object):
         self.turn_number = 200 #dönme sayısı
         self.fullstep_order =[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
         for pin in pins:
-            GPIO.setup(pin, GPIO.OUT)
-            GPIO.output(pin,0)
+            gpio.setup(pin, gpio.OUT)
+            gpio.output(pin,0)
 
 
     def entrance():
@@ -17,14 +17,14 @@ class Door(object):
         for i in range(self.turn_number): #200 variable'ı değiştirilebilir açısında göre
             for fullstep in range(4):
                 for pin in range(4):
-                    GPIO.output(pins[pin],fullstep_order[fullstep][pin])
+                    gpio.output(pins[pin],fullstep_order[fullstep][pin])
                     time.sleep(0.001)
     #break beam kodu
     # ters dönüş
         for i in range(self.turn_number): #200 variable'ı değiştirilebilir açısında göre
             for fullstep in range(4):
                 for pin in range(4):
-                    GPIO.output(pins[pin],fullstep_order[3-fullstep][pin])
+                    gpio.output(pins[pin],fullstep_order[3-fullstep][pin])
                     time.sleep(0.001)
     def exit():
         def entrance():
@@ -32,12 +32,12 @@ class Door(object):
             for i in range(self.turn_number): #200 variable'ı değiştirilebilir açısında göre
                 for fullstep in range(4):
                     for pin in range(4):
-                        GPIO.output(pins[pin],fullstep_order[fullstep][pin])
+                        gpio.output(pins[pin],fullstep_order[fullstep][pin])
                         time.sleep(0.001)
         #break beam kodu
         # ters dönüş
             for i in range(self.turn_number): #200 variable'ı değiştirilebilir açısında göre
                 for fullstep in range(4):
                     for pin in range(4):
-                        GPIO.output(pins[pin],fullstep_order[3-fullstep][pin])
+                        gpio.output(pins[pin],fullstep_order[3-fullstep][pin])
                         time.sleep(0.001)
