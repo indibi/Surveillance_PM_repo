@@ -14,14 +14,16 @@ class Door(object):
 
     def entrance():
     # düz donüş
-        for i in range(self.turn_number): #200 variable'ı değiştirilebilir açısında göre
+        for i in range(self.turn_number):
             for fullstep in range(4):
                 for pin in range(4):
                     gpio.output(pins[pin],fullstep_order[fullstep][pin])
                     time.sleep(0.001)
-    #break beam kodu
+
+    #break beam kodu---------
+
     # ters dönüş
-        for i in range(self.turn_number): #200 variable'ı değiştirilebilir açısında göre
+        for i in range(self.turn_number):
             for fullstep in range(4):
                 for pin in range(4):
                     gpio.output(pins[pin],fullstep_order[3-fullstep][pin])
@@ -29,14 +31,16 @@ class Door(object):
     def exit():
         def entrance():
         # düz donüş
-            for i in range(self.turn_number): #200 variable'ı değiştirilebilir açısında göre
+            for i in range(self.turn_number):
                 for fullstep in range(4):
                     for pin in range(4):
                         gpio.output(pins[pin],fullstep_order[fullstep][pin])
                         time.sleep(0.001)
-        #break beam kodu
+
+        #break beam kodu-----
+
         # ters dönüş
-            for i in range(self.turn_number): #200 variable'ı değiştirilebilir açısında göre
+            for i in range(self.turn_number):
                 for fullstep in range(4):
                     for pin in range(4):
                         gpio.output(pins[pin],fullstep_order[3-fullstep][pin])
