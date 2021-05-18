@@ -9,23 +9,20 @@ import HCSR04
 # 		os.nice(-5)
 # 	except OSError:
 # 		print("Process priority could not be decreased!")
-#
-#
-#
-# if __name__ == '__main__':
-# 	main()
 
-STATE = None
+
+# STATE = None
+# LOCKED = -10
+# UNLOCKED = 100
+# VERIFICATION = 10
+# DORMANT = 50
+# DENIED = 27
+
 HAND_APPROVED = 1
 HAND_DENIED =0
 NOT_HAND = 2
 
 class OHandReader(object):
-	LOCKED = -10
-	UNLOCKED = 100
-	VERIFICATION = 10
-	DORMANT = 50
-	STATE = DORMANT
 
 	def __init__(self, trig_pin, echo_pin, i2c_bus = 1):
 		self.bus = SMBus(i2c_bus)
@@ -55,7 +52,7 @@ class OHandReader(object):
 				for x in range(5):			# Getting 5 temperature measurements
 					self.Temperature_list.append(1.02* self.IRSens.get_object_1())
 					time.sleep(0.100)
-				
+
 				max_temp = max(self.Temperature_list)
 				print(f"Temperature reading: {max_temp}")
 				self.Temperature_list.clear()
