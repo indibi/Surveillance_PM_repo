@@ -2,7 +2,7 @@ import RPi.GPIO as gpio
 import time, math, threading
 
 class BreakBeam(object):
-    def __init__(self, BB_in, BB_out, BB_callback):
+    def __init__(self, (BB_in, BB_out), BB_callback):
         self.BB_in=BB_in
         self.BB_out=BB_out
         self.BB_t_IN=(0,time.time())    # (last state, timestamp of record)
@@ -19,7 +19,7 @@ class BreakBeam(object):
 
 
 class PeopleCounter(object):
-    def __init__(self, (BB1_in,BB1_out), (BB2_in,BB2_out)):
+    def __init__(self, (BB1_in,BB1_out, BB2_in,BB2_out)):
         self.BB1 = BreakBeam((BB1_in,BB1_out), break_1)
         self.BB2 = BreakBeam((BB2_in,BB2_out), break_2)
         self.people_inside=0
