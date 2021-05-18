@@ -6,6 +6,7 @@ import time
 class led(object):
     def __init(self,led_pin):
         gpio.setup(self.led_pin, gpio.OUT)
+        gpio.output(self.led_pin,0)
 
 
     def light():
