@@ -111,7 +111,6 @@ class MaskDetector(object):
                 color = (0, 127, 127)
             else :
                 color = (0, 0, 255)
-
             # include the probability in the label
             labell = "{}: {:.2f}%".format(label, max(mask, maskImproper, withoutMask) * 100)
             print(labell)

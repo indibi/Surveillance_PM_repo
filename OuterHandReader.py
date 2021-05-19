@@ -57,13 +57,13 @@ class OHandReader(object):
 				print(f"Temperature reading: {max_temp}")
 				self.Temperature_list.clear()
 				if (37.5>max_temp>26):		# Hand temperature is eligible
-					print("Hand approved!")
+					print("Skin temperature approved!")
 					return HAND_APPROVED
 				elif(max_temp >=37.5):
-					print("Hand denied!")
+					print("Skin temperature denied!")
 					return HAND_DENIED
 				else:
-					print("Unknown object is obscuring the Outer Hand Reader!")
+					print("Unknown object is obscuring the Entry Hand Reader!")
 					return NOT_HAND
 
 			count =0
