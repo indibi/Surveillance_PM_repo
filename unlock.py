@@ -21,7 +21,7 @@ class Door(object):
                     time.sleep(0.001)
 
     #break beam kodu---------
-    time.sleep(10)
+        time.sleep(10)
     # ters dönüş
         for i in range(self.turn_number):
             for fullstep in range(4):
@@ -36,7 +36,7 @@ class Door(object):
                         gpio.output(self.pins[pin],self.fullstep_order[fullstep][pin])
                         time.sleep(0.001)
         #break beam kodu-----
-    time.sleep(10)
+        time.sleep(10)
         # ters dönüş
             for i in range(self.turn_number):
                 for fullstep in range(4):
