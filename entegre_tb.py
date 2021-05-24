@@ -1,7 +1,7 @@
 import MaskDetector
 import OuterHandReader
 import ExitHandReader
-
+import unlock
 STATE = DORMANT
 LOCKED = -10
 UNLOCKED = 100
@@ -22,11 +22,13 @@ def main():
     print("Exit Hand Reader Initialized!")
     maskDetector = MaskDetector()
     print("Mask Detector Initialized!")
-
+	door = Door()
+	print("Mask Detector Initialized!")
     while True:
         while STATE == DORMANT:
             if (exitHandReader.read()):
                 STATE = UNLOCKED
+				door.exit()
                 print("The door is unlocked!")
                 sleep(5)
             sleep(0.1)
@@ -40,9 +42,9 @@ def main():
                 if result == "Mask":
                     print("Greetings. The door is unlocked.")
                     STATE = UNLOCKED
+					door.entrance()
                 elif result == "ImproperMask":
                     print("Please wear your mask properly. When you do, have your hand measured again. Thank you!")
                 else:
                     print("You do not have a mask on! Please leave the door front area!")
                     STATE = LOCKED
-                    
