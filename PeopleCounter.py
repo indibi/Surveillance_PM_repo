@@ -20,8 +20,8 @@ class BreakBeam(object):
 
 class PeopleCounter(object):
     def __init__(self, BB1_in,BB1_out, BB2_in,BB2_out):
-        self.BB1 = BreakBeam(BB1_in,BB1_out, break_1)
-        self.BB2 = BreakBeam(BB2_in,BB2_out, break_2)
+        self.BB1 = BreakBeam(BB1_in,BB1_out, self.break_1)
+        self.BB2 = BreakBeam(BB2_in,BB2_out, self.break_2)
         self.people_inside=0
         self.people_entrance=0
         self.LOCK = threading.Lock()
