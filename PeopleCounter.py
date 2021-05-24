@@ -15,7 +15,7 @@ class BreakBeam(object):
         gpio.add_event_detect(BB_out, gpio.RISING, callback=BB_callback)
 
     def __del__(self):
-		gpio.cleanup((self.BB_in, self.BB_out))
+        gpio.cleanup((self.BB_in, self.BB_out))
 
 
 class PeopleCounter(object):
