@@ -1,4 +1,4 @@
-import PeopleCounter
+from PeopleCounter import PeopleCounter
 
 X = PeopleCounter(23,24,21,22)
 try:
