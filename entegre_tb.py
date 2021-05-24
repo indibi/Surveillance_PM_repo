@@ -23,7 +23,7 @@ def main():
     maskDetector = MaskDetector()
     print("Mask Detector Initialized!")
 	door = Door()
-	print("Mask Detector Initialized!")
+	print("Door Initialized!")
     while True:
         while STATE == DORMANT:
             if (exitHandReader.read()):
