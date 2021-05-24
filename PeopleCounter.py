@@ -1,5 +1,6 @@
 import RPi.GPIO as gpio
 import time, math, threading, sys
+from time import sleep
 
 class BreakBeam(object):
     def __init__(self, BB_in, BB_out, BB_callback):

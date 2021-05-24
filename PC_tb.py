@@ -1,4 +1,5 @@
 from PeopleCounter import PeopleCounter
+import time
 
 X = PeopleCounter(23,24,21,22)
 try:
