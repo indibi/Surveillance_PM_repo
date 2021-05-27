@@ -24,9 +24,9 @@ class Buzzer(object):
     def positiveresponse(self):
         for i in range(4):
             self.buzzer.start(50)
-            time.sleep(0.3)
+            sleep(0.3)
             self.buzzer.stop()
-            time.sleep(0.3)
+            sleep(0.3)
 
 buzzer = Buzzer(33)
 print("Positive response")
