@@ -59,3 +59,5 @@ def main():
                     STATE = LOCKED
 
         sleep(5)
+
+main()
