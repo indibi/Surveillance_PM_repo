@@ -27,3 +27,7 @@ class Buzzer(object):
             time.sleep(0.3)
             self.buzzer.stop()
             time.sleep(0.3)
+
+buzzer = Buzzer(13)
+print("Positive response")
+buzzer.positiveresponse()
