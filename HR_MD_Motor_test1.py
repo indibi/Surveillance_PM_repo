@@ -11,10 +11,10 @@ DENIED = 27
 
 
 def main():
-	try:
-		os.nice(-15)
-	except OSError:
-		print("Process priority could not be decreased!")
+    try:
+        os.nice(-15)
+    except OSError:
+        print("Process priority could not be decreased!")
 
     EntryHR= OHandReader(12,18,1)
     print("Entry Hand Reader Initialized!")
