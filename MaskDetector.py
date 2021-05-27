@@ -27,7 +27,7 @@ class MaskDetector(object):
         self.confidence = confidence
         self.videoOn = False
         if not self.isHeadless:
-            self.displayThread = threading.Thread(target=video_stream)
+            self.displayThread = threading.Thread(target=self.video_stream)
             self.displayThread.start()
     def start_display(self):
         self.start_display = True
