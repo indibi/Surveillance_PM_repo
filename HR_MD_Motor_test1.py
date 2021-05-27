@@ -5,7 +5,7 @@ from Buzzer import Buzzer
 from Door import Door
 import ExitHandReader
 import MaskDetector
-import OHandReader
+import OuterHandReader
 import Buzzer
 import Door
 import os
