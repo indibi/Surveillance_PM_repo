@@ -25,11 +25,14 @@ class Buzzer(object):
             sleep(0.1)
 
     def positiveresponse(self):
-        for i in range(2):
-            gpio.output(self.pin_number,gpio.LOW)
-            sleep(0.2)
-            gpio.output(self.pin_number,gpio.HIGH)
-            sleep(0.3)
+        gpio.output(self.pin_number,gpio.LOW)
+        sleep(0.2)
+        gpio.output(self.pin_number,gpio.HIGH)
+        sleep(0.3)
+        gpio.output(self.pin_number,gpio.LOW)
+        sleep(0.1)
+        gpio.output(self.pin_number,gpio.HIGH)
+
 
     def __del__(self):
         gpio.cleanup(self.pin_number)
