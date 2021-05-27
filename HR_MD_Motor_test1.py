@@ -40,7 +40,7 @@ def main():
                 print("The door is unlocked!")
                 B.positiveresponse()
                 door.exit()
-                sleep(5)
+                sleep(1)
             sleep(0.1)
 
         STATE = VERIFICATION
