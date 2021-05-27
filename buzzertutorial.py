@@ -13,16 +13,16 @@ class Buzzer(object):
     def ringwarning(self):
         for i in range(3):
             gpio.output(self.pin_number,gpio.LOW)
-            sleep(0.2)
+            sleep(0.1)
             gpio.output(self.pin_number,gpio.HIGH)
             sleep(0.3)
 
     def ringerror(self):
         for i in range(4):
             gpio.output(self.pin_number,gpio.LOW)
-            sleep(0.5)
+            sleep(0.6)
             gpio.output(self.pin_number,gpio.HIGH)
-            sleep(0.15)
+            sleep(0.1)
 
     def positiveresponse(self):
         for i in range(2):
