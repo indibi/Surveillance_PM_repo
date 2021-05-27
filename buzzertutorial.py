@@ -5,7 +5,7 @@ from time import sleep
 
 
 class Buzzer(object):
-    def __init(self,pin_number):
+    def __init__(self,pin_number):
         gpio.setmode(gpio.BOARD)
         self.pin_number=pin_number
         self.buzzer = GPIO.PWM(self.pin_number, 3000) # Set frequency to 1 Khz
@@ -20,3 +20,10 @@ class Buzzer(object):
 
     def __del__(self):
         gpio.cleanup(self.pin_number)
+
+    def positiveresponse(self):
+        for i in range(4):
+            self.buzzer.start(50)
+            time.sleep(0.3)
+            self.buzzer.stop()
+            time.sleep(0.3)
