@@ -32,7 +32,7 @@ class OHandReader(object):
 	def read(self):
 		self.ProxSens.set_temp(self.IRSens.get_ambient())
 		Temperature_list = []
-		while STATE = VERIFICATION:
+		while STATE == VERIFICATION:
 			dist = self.ProxSens.distance()
 			count =1
 			## Count counts the number of measurement trials that was done to
