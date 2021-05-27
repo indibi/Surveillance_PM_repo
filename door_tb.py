@@ -1,4 +1,4 @@
-import unlock
+import Door from unlock
 
 x = Door()
 print("ENTRANCE")
