@@ -16,9 +16,11 @@ class MaskDetector(object):
         kwargs.setdefault('proto','./face_detector/deploy.prototxt')
         kwargs.setdefault('face','./face_detector/res10_300x300_ssd_iter_140000.caffemodel')
         kwargs.setdefault('model','./face_mask_detector.model')
+        kwargs.setdefault('headless', True)
         prototxtPath = kwargs['proto']
         weightsPath = kwargs['face']
         model_path = kwargs['model']
+        self.isHeadless = kwargs['headless']
         self.faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
         self.maskNet = load_model(model_path)
         self.videoStream = VideoStream(src=v_src)
@@ -113,12 +115,14 @@ class MaskDetector(object):
                 color = (0, 0, 255)
             # include the probability in the label
             labell = "{}: {:.2f}%".format(label, max(mask, maskImproper, withoutMask) * 100)
-            print(labell)
-            return label
-            # display the label and bounding box rectangle on the output
-            # frame
-            #cv2.putText(frame, label, (startX, startY - 10),
-            #    cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
-            #cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
-
-        #cv2.imshow("Frame", frame)
+            if self.isHeadless:
+                print(labell)
+                return label
+            else:
+                # display the label and bounding box rectangle on the output
+                # frame
+                cv2.putText(frame, labell, (startX, startY - 10),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
+                cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
+                cv2.imshow("Frame", frame)
+                return label
