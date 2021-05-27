@@ -2,6 +2,7 @@ from smbus2 import SMBus
 from mlx90614 import MLX90614
 import time, random, os
 import HCSR04
+import HR_MD_Motor_test1
 
 #	HandReader = OHandReader(12,18,1)
 # def main():
@@ -32,7 +33,7 @@ class OHandReader(object):
 	def read(self):
 		self.ProxSens.set_temp(self.IRSens.get_ambient())
 		Temperature_list = []
-		while STATE == VERIFICATION:
+		while HR_MD_Motor_test1.STATE == HR_MD_Motor_test1.VERIFICATION:
 			dist = self.ProxSens.distance()
 			count =1
 			## Count counts the number of measurement trials that was done to
