@@ -3,7 +3,7 @@ import time
 
 
 class Door(object):
-    def __init__(self,pins=[35,36,37,38]):
+    def __init__(self, pins=[35,36,37,38]): # pinler disaridan da set edilebiliyor ama defaultu bu
         self.pins = pins  #yanyana olan pinler (ayarlanabilir)
         self.turn_number = 200 #dönme sayısı
         self.fullstep_order =[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
