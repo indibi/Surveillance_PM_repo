@@ -1,5 +1,3 @@
-#Libraries
-#https://peppe8o.com/use-passive-buzzer-with-raspberry-pi-and-python/
 import RPi.GPIO as gpio
 from time import sleep
 
@@ -36,14 +34,3 @@ class Buzzer(object):
 
     def __del__(self):
         gpio.cleanup(self.pin_number)
-
-
-
-
-buzzer = Buzzer(33)
-#input("warning")
-#buzzer.ringwarning()
-#input("error")
-#buzzer.ringerror()
-input("positive response")
-buzzer.positiveresponse()
