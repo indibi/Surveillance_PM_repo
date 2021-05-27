@@ -29,6 +29,12 @@ class Buzzer(object):
             self.buzzer.stop()
             sleep(0.2)
 
+gpio.setmode(gpio.BOARD)
+gpio.setup(33, gpio.OUT, initial =gpio.HIGH)
+sleep(2)
+gpio.output(33,gpio.LOW)
+
+
 buzzer = Buzzer(33)
 print("Positive response")
 buzzer.positiveresponse()
