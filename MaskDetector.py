@@ -8,7 +8,7 @@ import argparse
 import imutils
 import time
 import cv2
-import os
+import os, Threading
 
 class MaskDetector(object):
 
@@ -25,12 +25,22 @@ class MaskDetector(object):
         self.maskNet = load_model(model_path)
         self.videoStream = VideoStream(src=v_src)
         self.confidence = confidence
+        self.videoOn = False
 
-    def start_vid(self):
+    def start_display(self):
+        self.start_display = True
         return self.videoStream.start()
 
-    def stop_vid(self):
+    def stop_display(self):
+        self.videoOn = False
         return self.videoStream.stop()
+
+    def video_stream(self):
+        while True:
+            while self.videoOn:
+                self.detect_mask()
+                sleep(0.2)
+            sleep(1)
 
     def detect_mask(self):
         if self.videoStream.stopped:
