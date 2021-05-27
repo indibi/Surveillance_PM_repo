@@ -4,6 +4,7 @@ from OuterHandReader import OHandReader
 from Buzzer import Buzzer
 from Door import Door
 import os
+from time import sleep
 LOCKED = -10
 UNLOCKED = 100
 VERIFICATION = 10
