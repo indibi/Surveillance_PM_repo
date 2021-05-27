@@ -38,7 +38,9 @@ class Buzzer(object):
 
 
 buzzer = Buzzer(33)
-
+input("warning")
 buzzer.ringwarning()
+input("error")
 buzzer.ringerror()
+input("positive response")
 buzzer.positiveresponse()
