@@ -1,13 +1,8 @@
-from ExitHandReader import ExitHandReader
-from MaskDetector import MaskDetector
-from OuterHandReader import OHandReader
 from Buzzer import Buzzer
 from Door import Door
 import ExitHandReader
 import MaskDetector
 import OuterHandReader
-import Buzzer
-import Door
 import os
 from time import sleep
 LOCKED = -10
@@ -24,11 +19,11 @@ def main():
     except OSError:
         print("Process priority could not be decreased!")
 
-    EntryHR= OHandReader(12,18,1)
+    EntryHR= OuterHandReader.OHandReader(12,18,1)
     print("Entry Hand Reader Initialized!")
-    ExitHR = ExitHandReader(32,31)
+    ExitHR = ExitHandReader.ExitHandReader(32,31)
     print("Exit Hand Reader Initialized!")
-    MD = MaskDetector(headless=False)
+    MD = MaskDetector.MaskDetector(headless=False)
     print("Mask Detector Initialized!")
     door = Door()
     print("Door Initialized!")
