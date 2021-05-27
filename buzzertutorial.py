@@ -9,36 +9,36 @@ class Buzzer(object):
         gpio.setmode(gpio.BOARD)
         self.pin_number=pin_number
         gpio.setup(pin_number, gpio.OUT, initial=gpio.HIGH)
-        self.buzzer = gpio.PWM(self.pin_number, 2300) # Set frequency to 1 Khz
+
     def ringwarning(self):
-        self.buzzer.start(40) # Set dutycycle to 10
+        for i in range(3):
+            gpio.output(self.pin_number,gpio.LOW)
+            sleep(0.2)
+            gpio.output(self.pin_number,gpio.HIGH)
+            sleep(0.3)
 
     def ringerror(self):
-        self.buzzer.start(70) # Set dutycycle to 50
+        for i in range(4):
+            gpio.output(self.pin_number,gpio.LOW)
+            sleep(0.5)
+            gpio.output(self.pin_number,gpio.HIGH)
+            sleep(0.15)
 
-    def stop(self):
-        self.buzzer.stop()
+    def positiveresponse(self):
+        for i in range(2):
+            gpio.output(self.pin_number,gpio.LOW)
+            sleep(0.2)
+            gpio.output(self.pin_number,gpio.HIGH)
+            sleep(0.3)
 
     def __del__(self):
         gpio.cleanup(self.pin_number)
 
-    def positiveresponse(self):
-        for i in range(4):
-            self.buzzer.start(50)
-            sleep(0.5)
-            self.buzzer.stop()
-            sleep(0.2)
 
-gpio.setmode(gpio.BOARD)
-gpio.setup(33, gpio.OUT, initial =gpio.HIGH)
-input(">>>>>>")
-gpio.output(33,gpio.LOW)
-input(">>>>")
+
 
 buzzer = Buzzer(33)
-print("Positive response")
-buzzer.positiveresponse()
-print("Warning")
+
 buzzer.ringwarning()
-sleep(2)
-buzzer.stop()
+buzzer.ringerror()
+buzzer.positiveresponse()
