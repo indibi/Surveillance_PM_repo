@@ -10,7 +10,7 @@ UNLOCKED = 100
 VERIFICATION = 10
 DORMANT = 50
 DENIED = 27
-STATE = DORMANT
+
 
 HAND_APPROVED = 1
 HAND_DENIED =0
@@ -33,6 +33,7 @@ def main():
     B = Buzzer(33)
 
     global STATE
+    STATE = DORMANT
     while True:
         STATE = DORMANT
         while STATE == DORMANT:
