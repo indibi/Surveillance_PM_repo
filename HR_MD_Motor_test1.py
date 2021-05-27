@@ -3,6 +3,11 @@ from MaskDetector import MaskDetector
 from OuterHandReader import OHandReader
 from Buzzer import Buzzer
 from Door import Door
+import ExitHandReader
+import MaskDetector
+import OHandReader
+import Buzzer
+import Door
 import os
 from time import sleep
 LOCKED = -10
