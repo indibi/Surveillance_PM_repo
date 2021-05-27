@@ -32,6 +32,7 @@ def main():
     print("Door Initialized!")
     B = Buzzer(33)
 
+    global STATE
     while True:
         STATE = DORMANT
         while STATE == DORMANT:
