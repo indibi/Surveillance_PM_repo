@@ -33,6 +33,7 @@ class OHandReader(object):
 	def read(self):
 		self.ProxSens.set_temp(self.IRSens.get_ambient())
 		print("debug0")
+		print(f"State: {HR_MD_Motor_test1.STATE}")
 		Temperature_list = []
 		while HR_MD_Motor_test1.STATE == HR_MD_Motor_test1.VERIFICATION:
 			print("debug1")
