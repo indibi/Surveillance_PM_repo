@@ -65,5 +65,5 @@ def main():
                     STATE = LOCKED
 
         sleep(5)
-
-main()
+if __name__ == '__main__':
+    main()
