@@ -47,7 +47,7 @@ def main():
         print("Verification state")
         MD.start_display()
         while STATE == VERIFICATION:
-            result = ExitHR.read()
+            result = EntryHR.read()
             if(HAND_APPROVED == result):
                 print("Checking face mask.")
                 result = MD.detect_mask()

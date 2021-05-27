@@ -47,7 +47,7 @@ class MaskDetector(object):
             sleep(1)
 
     def detect_mask(self):
-        if self.videoStream.stopped:
+        if self.videoStream.stream.stopped:
             self.videoStream.start()
             print("""Warning, the video stream was stopped earlier but mask detection is asked.
             Attempting to start the video stream.""")
