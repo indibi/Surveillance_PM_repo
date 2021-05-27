@@ -28,7 +28,7 @@ class Buzzer(object):
         gpio.output(self.pin_number,gpio.LOW)
         sleep(0.2)
         gpio.output(self.pin_number,gpio.HIGH)
-        sleep(0.3)
+        sleep(0.1)
         gpio.output(self.pin_number,gpio.LOW)
         sleep(0.1)
         gpio.output(self.pin_number,gpio.HIGH)
