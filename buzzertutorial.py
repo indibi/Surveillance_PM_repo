@@ -9,7 +9,7 @@ class Buzzer(object):
         gpio.setmode(gpio.BOARD)
         self.pin_number=pin_number
         gpio.setup(pin_number, gpio.OUT, initial=gpio.HIGH)
-        self.buzzer = gpio.PWM(self.pin_number, 1000) # Set frequency to 1 Khz
+        self.buzzer = gpio.PWM(self.pin_number, 2300) # Set frequency to 1 Khz
     def ringwarning(self):
         self.buzzer.start(40) # Set dutycycle to 10
 
@@ -33,7 +33,7 @@ gpio.setmode(gpio.BOARD)
 gpio.setup(33, gpio.OUT, initial =gpio.HIGH)
 input(">>>>>>")
 gpio.output(33,gpio.LOW)
-
+input(">>>>")
 
 buzzer = Buzzer(33)
 print("Positive response")
