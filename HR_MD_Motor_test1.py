@@ -2,6 +2,7 @@ from ExitHandReader import ExitHandReader
 from MaskDetector import MaskDetector
 from OuterHandReader import OHandReader
 from Buzzer import Buzzer
+from Door import Door
 import os
 LOCKED = -10
 UNLOCKED = 100
