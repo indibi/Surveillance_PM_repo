@@ -31,7 +31,7 @@ class Buzzer(object):
 
 gpio.setmode(gpio.BOARD)
 gpio.setup(33, gpio.OUT, initial =gpio.HIGH)
-sleep(2)
+input(">>>>>>")
 gpio.output(33,gpio.LOW)
 
 
