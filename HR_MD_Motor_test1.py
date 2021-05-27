@@ -44,7 +44,7 @@ def main():
         print("Verification state")
         while STATE == VERIFICATION:
             MD.start_display()
-            result = exitHandReader.read()
+            result = ExitHR.read()
             if(HAND_APPROVED == result):
                 print("Checking face mask.")
                 result = MD.detect_mask()
