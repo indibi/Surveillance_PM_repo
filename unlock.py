@@ -28,35 +28,20 @@ class Door(object):
 
     def entrance(self):
     # düz donüş
-        for i in range(self.turn_number):
-            for fullstep in range(4):
-                for pin in range(4):
-                    gpio.output(self.pins[pin],self.fullstep_order[fullstep][pin])
-                    time.sleep(0.001)
-
+        self.open()
     #break beam kodu---------
         time.sleep(10)
     # ters dönüş
-        for i in range(self.turn_number):
-            for fullstep in range(4):
-                for pin in range(4):
-                    gpio.output(self.pins[pin],self.fullstep_order[3-fullstep][pin])
-                    time.sleep(0.001)
+        self.close()
+
     def exit(self):
         # düz donüş
-        for i in range(self.turn_number):
-            for fullstep in range(4):
-                for pin in range(4):
-                    gpio.output(self.pins[pin],self.fullstep_order[fullstep][pin])
-                    time.sleep(0.001)
+        self.open()
         #break beam kodu-----
         time.sleep(10)
         # ters dönüş
-        for i in range(self.turn_number):
-            for fullstep in range(4):
-                for pin in range(4):
-                    gpio.output(self.pins[pin],self.fullstep_order[3-fullstep][pin])
-                    time.sleep(0.001)
+        self.close()
+
 
     def __del__(self):
         gpio.cleanup(self.pins)
