@@ -26,7 +26,7 @@ class Buzzer(object):
 
     def positiveresponse(self):
         gpio.output(self.pin_number,gpio.LOW)
-        sleep(0.2)
+        sleep(0.1)
         gpio.output(self.pin_number,gpio.HIGH)
         sleep(0.1)
         gpio.output(self.pin_number,gpio.LOW)
@@ -41,9 +41,9 @@ class Buzzer(object):
 
 
 buzzer = Buzzer(33)
-input("warning")
-buzzer.ringwarning()
-input("error")
-buzzer.ringerror()
+#input("warning")
+#buzzer.ringwarning()
+#input("error")
+#buzzer.ringerror()
 input("positive response")
 buzzer.positiveresponse()
