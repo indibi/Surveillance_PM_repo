@@ -43,11 +43,12 @@ def main():
         STATE = VERIFICATION
 
         while STATE == VERIFICATION:
-            maskDetector.start_vid()
+            MD.start_vid()
+            MD.start_display()
             result = exitHandReader.read()
             if(HAND_APPROVED == result):
                 print("Checking face mask.")
-                result = maskDetector.detect_mask()
+                result = MD.detect_mask()
                 if result == "Mask":
                     print("Greetings. The door is unlocked.")
                     STATE = UNLOCKED
