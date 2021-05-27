@@ -57,5 +57,5 @@ def main():
                     print("You do not have a mask on! Please leave the door front area!")
                     door.ringerror()
                     STATE = LOCKED
-                    
+
         sleep(5)
