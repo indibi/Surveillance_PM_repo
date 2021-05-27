@@ -32,3 +32,7 @@ class Buzzer(object):
 buzzer = Buzzer(33)
 print("Positive response")
 buzzer.positiveresponse()
+print("Warning")
+buzzer.ringwarning()
+sleep(2)
+buzzer.stop()
