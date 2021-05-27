@@ -8,7 +8,7 @@ import argparse
 import imutils
 import time
 import cv2
-import os, Threading
+import os, threading
 
 class MaskDetector(object):
 
@@ -26,7 +26,9 @@ class MaskDetector(object):
         self.videoStream = VideoStream(src=v_src)
         self.confidence = confidence
         self.videoOn = False
-
+        if not self.isHeadless:
+            self.displayThread = threading.Thread(target=video_stream)
+            self.displayThread.start()
     def start_display(self):
         self.start_display = True
         return self.videoStream.start()
