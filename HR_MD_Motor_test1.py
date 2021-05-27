@@ -1,9 +1,7 @@
 from ExitHandReader import ExitHandReader
 from MaskDetector import MaskDetector
 from OuterHandReader import OHandReader
-
-
-
+from buzzertutorial import Buzzer
 STATE = DORMANT
 LOCKED = -10
 UNLOCKED = 100
@@ -24,8 +22,10 @@ def main():
     print("Exit Hand Reader Initialized!")
     MD = MaskDetector(headless=False)
     print("Mask Detector Initialized!")
-	door = Door()
-	print("Door Initialized!")
+    door = Door()
+    print("Door Initialized!")
+    buzzer = Buzzer(33)
+
 
     STATE = DORMANT
     while True:
@@ -46,7 +46,7 @@ def main():
                 if result == "Mask":
                     print("Greetings. The door is unlocked.")
                     STATE = UNLOCKED
-					door.entrance()
+                    door.entrance()
                 elif result == "ImproperMask":
                     print("Please wear your mask properly. When you do, have your hand measured again. Thank you!")
                 else:

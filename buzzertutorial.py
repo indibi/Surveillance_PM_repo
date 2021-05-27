@@ -28,6 +28,6 @@ class Buzzer(object):
             self.buzzer.stop()
             time.sleep(0.3)
 
-buzzer = Buzzer(13)
+buzzer = Buzzer(33)
 print("Positive response")
 buzzer.positiveresponse()
