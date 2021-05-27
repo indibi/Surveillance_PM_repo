@@ -7,6 +7,7 @@ class Door(object):
         self.pins = pins  #yanyana olan pinler (ayarlanabilir)
         self.turn_number = 200 #dönme sayısı
         self.fullstep_order =[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
+        gpio.setmode(gpio.BOARD)
         for pin in pins:
             gpio.setup(pin, gpio.OUT)
             gpio.output(pin,0)
