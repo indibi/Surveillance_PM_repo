@@ -41,9 +41,8 @@ def main():
             sleep(0.1)
 
         STATE = VERIFICATION
-
+        print("Verification state")
         while STATE == VERIFICATION:
-            MD.start_vid()
             MD.start_display()
             result = exitHandReader.read()
             if(HAND_APPROVED == result):
