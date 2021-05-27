@@ -26,7 +26,7 @@ def main():
     print("Mask Detector Initialized!")
     door = Door()
     print("Door Initialized!")
-    Buzzer = Buzzer(33)
+    B = Buzzer(33)
 
     while True:
         STATE = DORMANT
@@ -34,7 +34,7 @@ def main():
             if (ExitHR.read()):
                 STATE = UNLOCKED
                 print("The door is unlocked!")
-                Buzzer.positiveresponse()
+                B.positiveresponse()
                 door.exit()
                 sleep(5)
             sleep(0.1)
@@ -50,14 +50,14 @@ def main():
                 if result == "Mask":
                     print("Greetings. The door is unlocked.")
                     STATE = UNLOCKED
-                    Buzzer.positiveresponse()
+                    B.positiveresponse()
                     door.entrance()
                 elif result == "ImproperMask":
                     print("Please wear your mask properly. When you do, have your hand measured again. Thank you!")
-                    door.ringwarning()
+                    B.ringwarning()
                 else:
                     print("You do not have a mask on! Please leave the door front area!")
-                    door.ringerror()
+                    B.ringerror()
                     STATE = LOCKED
 
         sleep(5)
