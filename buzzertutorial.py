@@ -8,7 +8,7 @@ class Buzzer(object):
     def __init__(self,pin_number):
         gpio.setmode(gpio.BOARD)
         self.pin_number=pin_number
-        self.buzzer = GPIO.PWM(self.pin_number, 3000) # Set frequency to 1 Khz
+        self.buzzer = gpio.PWM(self.pin_number, 3000) # Set frequency to 1 Khz
     def ringwarning(self):
         self.buzzer.start(40) # Set dutycycle to 10
 
