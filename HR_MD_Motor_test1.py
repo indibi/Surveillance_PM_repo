@@ -12,6 +12,9 @@ DORMANT = 50
 DENIED = 27
 STATE = DORMANT
 
+HAND_APPROVED = 1
+HAND_DENIED =0
+NOT_HAND = 2
 
 def main():
     try:
