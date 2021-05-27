@@ -1,7 +1,7 @@
 from ExitHandReader import ExitHandReader
 from MaskDetector import MaskDetector
 from OuterHandReader import OHandReader
-from buzzertutorial import Buzzer
+from Buzzer import Buzzer
 STATE = DORMANT
 LOCKED = -10
 UNLOCKED = 100
