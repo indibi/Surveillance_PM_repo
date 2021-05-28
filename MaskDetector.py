@@ -108,7 +108,6 @@ class MaskDetector(object):
             # for faster inference we'll make batch predictions on *all*
             # faces at the same time rather than one-by-one predictions
             # in the above `for` loop
-            print("LENFACES")
             faces = np.array(faces, dtype="float32")
             preds = self.maskNet.predict(faces, batch_size=32)
             print(preds)
