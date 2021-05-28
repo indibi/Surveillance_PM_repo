@@ -17,9 +17,11 @@ class MaskDetector(object):
         kwargs.setdefault('proto','./face_detector/deploy.prototxt')
         kwargs.setdefault('face','./face_detector/res10_300x300_ssd_iter_140000.caffemodel')
         kwargs.setdefault('model','./face_mask_detector.model')
+        kwargs.setdefault('stock','./stock_image.jpg')
         prototxtPath = kwargs['proto']
         weightsPath = kwargs['face']
         model_path = kwargs['model']
+        stock_image = kwargs['stock']
         self.isHeadless = headless
         self.faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
         self.maskNet = load_model(model_path)
