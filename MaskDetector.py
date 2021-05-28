@@ -141,16 +141,19 @@ class MaskDetector(object):
                 color = (0, 0, 255)
             # include the probability in the label
             labell = "{}: {:.2f}%".format(label, max(mask, maskImproper, withoutMask) * 100)
-            if self.isHeadless:
-                print(labell)
-                print("Headless")
-                return label
-            else:
-                # display the label and bounding box rectangle on the output
-                # frame
-                print("Not Headless")
+            if not self.isHeadless:
                 cv2.putText(frame, labell, (startX, startY - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
                 cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
-                cv2.imshow("Frame", frame)
-                return label
+
+        if self.isHeadless:
+            print(labell)
+            print("Headless")
+            return label
+        else:
+            # display the label and bounding box rectangle on the output
+            # frame
+            print("Not Headless")
+
+            cv2.imshow("Frame", frame)
+            return label
