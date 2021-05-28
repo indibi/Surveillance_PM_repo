@@ -54,12 +54,12 @@ class OHandReader(object):
 				if count!=60:
 					print(f"Distance = {dist}")
 				for x in range(5):			# Getting 5 temperature measurements
-					self.Temperature_list.append(1.02* self.IRSens.get_object_1())
+					Temperature_list.append(1.02* self.IRSens.get_object_1())
 					time.sleep(0.100)
 
-				max_temp = max(self.Temperature_list)
+				max_temp = max(Temperature_list)
 				print(f"Temperature reading: {max_temp}")
-				self.Temperature_list.clear()
+				Temperature_list.clear()
 				if (37.5>max_temp>26):		# Hand temperature is eligible
 					print("Skin temperature approved!")
 					return HAND_APPROVED
