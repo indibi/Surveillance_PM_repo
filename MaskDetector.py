@@ -65,7 +65,6 @@ class MaskDetector(object):
         # grab the dimensions of the frame and then construct a blob from it
         frame = imutils.resize( self.videoStream.read(), width=400)
         (h,w) = frame.shape[:2]
-        print(frame.shape[:2])
         blob = cv2.dnn.blobFromImage(frame, 1.0, (300, 300),(104.0, 177.0, 123.0))
         # pass the blob through the network and obtain the face detections
         self.faceNet.setInput(blob)
@@ -148,13 +147,13 @@ class MaskDetector(object):
                 cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 
         if self.isHeadless:
-            print(labell)
-            print("Headless")
+            #print(labell)
+            #print("Headless")
             return label
         else:
             # display the label and bounding box rectangle on the output
             # frame
-            print("Not Headless")
+            #print("Not Headless")
             cv2.imshow("Frame", frame)
             key = cv2.waitKey(1) & 0xFF
             return label
