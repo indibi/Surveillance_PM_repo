@@ -57,8 +57,8 @@ class MaskDetector(object):
         (h,w) = frame.shape[:2]
         blob = cv2.dnn.blobFromImage(frame, 1.0, (300, 300),(104.0, 177.0, 123.0))
         # pass the blob through the network and obtain the face detections
-        faceNet.setInput(blob)
-        detections = faceNet.forward()
+        self.faceNet.setInput(blob)
+        detections = self.faceNet.forward()
         # initialize our list of faces, their corresponding locations,
         # and the list of predictions from our face mask network
         faces = []
@@ -99,7 +99,7 @@ class MaskDetector(object):
             # faces at the same time rather than one-by-one predictions
             # in the above `for` loop
             faces = np.array(faces, dtype="float32")
-            preds = maskNet.predict(faces, batch_size=32)
+            preds = self.maskNet.predict(faces, batch_size=32)
 
         for (box, pred) in zip(locs, preds):
             # unpack the bounding box and predictions
