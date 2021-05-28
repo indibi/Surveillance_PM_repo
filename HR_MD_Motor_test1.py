@@ -35,17 +35,17 @@ def main():
     global STATE
 
     while True:
-        STATE = DORMANT
+        global STATE = DORMANT
         while STATE == DORMANT:
             if (ExitHR.read()):
-                STATE = UNLOCKED
+                global STATE = UNLOCKED
                 print("The door is unlocked!")
                 B.positiveresponse()
                 door.exit()
                 sleep(1)
             sleep(0.1)
 
-        STATE = VERIFICATION
+        global STATE = VERIFICATION
         print("Verification state")
         MD.start_display()
         while STATE == VERIFICATION:
