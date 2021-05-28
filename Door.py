@@ -30,7 +30,7 @@ class Door(object):
     # düz donüş
         self.open()
     #break beam kodu---------
-        time.sleep(10)
+        time.sleep(6)
     # ters dönüş
         self.close()
 
@@ -38,7 +38,7 @@ class Door(object):
         # düz donüş
         self.open()
         #break beam kodu-----
-        time.sleep(10)
+        time.sleep(6)
         # ters dönüş
         self.close()
 
