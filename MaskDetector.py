@@ -26,9 +26,10 @@ class MaskDetector(object):
         self.videoStream = VideoStream(src=v_src)
         self.confidence = confidence
         self.videoOn = False
-        if not self.isHeadless:
-            self.displayThread = threading.Thread(target=self.video_stream)
-            self.displayThread.start()
+        self.lastlabel = None
+        self.lastlabelLock = threading.Lock()
+        self.displayThread = threading.Thread(target=self.video_stream)
+        self.displayThread.start()
 
     def start_display(self):
         self.videoOn = True
@@ -41,9 +42,18 @@ class MaskDetector(object):
     def video_stream(self):
         while True:
             while self.videoOn:
-                self.detect_mask()
+                a = self.detect_mask()
+                self.lastlabelLock.acquire()
+                self.lastlabel = a
+                self.lastlabelLock.release()
                 sleep(0.2)
             sleep(1)
+
+    def last_label(self):
+        self.lastlabelLock.acquire()
+        a = self.lastlabel
+        self.lastlabelLock.release()
+        return a
 
     def detect_mask(self):
         if self.videoStream.stream.stopped:

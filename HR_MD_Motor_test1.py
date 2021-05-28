@@ -47,7 +47,7 @@ def main():
             result = EntryHR.read()
             if(HAND_APPROVED == result):
                 print("Checking face mask.")
-                result = MD.detect_mask()
+                result = MD.last_label()
                 if result == "Mask":
                     print("Greetings. The door is unlocked.")
                     #controller.STATE = controller.UNLOCKED
