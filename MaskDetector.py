@@ -65,6 +65,7 @@ class MaskDetector(object):
         # grab the dimensions of the frame and then construct a blob from it
         frame = imutils.resize( self.videoStream.read(), width=400)
         (h,w) = frame.shape[:2]
+        print(frame.shape[:2])
         blob = cv2.dnn.blobFromImage(frame, 1.0, (300, 300),(104.0, 177.0, 123.0))
         # pass the blob through the network and obtain the face detections
         self.faceNet.setInput(blob)
