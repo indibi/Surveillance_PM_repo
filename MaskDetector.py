@@ -70,7 +70,7 @@ class MaskDetector(object):
                 self.lastlabelLock.acquire()
                 self.lastlabel = a
                 self.lastlabelLock.release()
-                sleep(0.2)
+                sleep(0.1)
             sleep(1)
 
     def last_label(self):

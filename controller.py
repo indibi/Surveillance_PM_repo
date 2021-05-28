@@ -1,18 +1,13 @@
-
 # Initiation of systems, objects and variables --
-# from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
-# from tensorflow.keras.preprocessing.image import img_to_array
-# from tensorflow.keras.models import load_model
-# from imutils.video import VideoStream
-# from smbus2 import SMBus
-# from mlx90614 import MLX90614
-# import time, random, os
-# import HCSR04
-# import cv2
-# import os
-# import argparse
-# import imutils
-
+from Buzzer import Buzzer
+from Door import Door
+import PeopleCounter
+import ExitHandReader
+import MaskDetector
+import OuterHandReader
+import os
+from time import sleep
+import controller
 
 LOCKED = -10
 UNLOCKED = 100
@@ -20,6 +15,68 @@ VERIFICATION = 10
 DORMANT = 50
 DENIED = 27
 STATE = DORMANT
+
+
+HAND_APPROVED = 1
+HAND_DENIED =0
+NOT_HAND = 2
+
+def main():
+    try:
+        os.nice(-15)
+    except OSError:
+        print("Process priority could not be decreased!")
+
+    EntryHR= OuterHandReader.OHandReader(12,18,1)
+    print("Entry Hand Reader Initialized!")
+    ExitHR = ExitHandReader.ExitHandReader(32,31)
+    print("Exit Hand Reader Initialized!")
+    MD = MaskDetector.MaskDetector(headless=False)
+    print("Mask Detector Initialized!")
+    door = Door()
+    print("Door Initialized!")
+    B = Buzzer(33)
+
+
+
+    while True:
+        controller.STATE = controller.DORMANT
+        while controller.STATE == controller.DORMANT:
+            if (ExitHR.read()):
+                controller.STATE = controller.UNLOCKED
+                print("The door is unlocked!")
+                B.positiveresponse()
+                door.exit()
+                sleep(1)
+            sleep(0.1)
+
+        controller.STATE = controller.VERIFICATION
+        print("Verification state")
+        MD.start_display()
+        while controller.STATE == controller.VERIFICATION:
+            result = EntryHR.read()
+            if(HAND_APPROVED == result):
+                print("Checking face mask.")
+                result = MD.last_label()
+                if result == "Mask":
+                    print("Greetings. The door is unlocked.")
+                    #controller.STATE = controller.UNLOCKED
+                    B.positiveresponse()
+                    door.entrance()
+                elif result == "Improper Mask":
+                    print("Please wear your mask properly. When you do, have your hand measured again. Thank you!")
+                    B.ringwarning()
+                else:
+                    print("You do not have a mask on! Please leave the door front area!")
+                    B.ringerror()
+                    #controller.STATE = controller.LOCKED
+
+        sleep(5)
+if __name__ == '__main__':
+    main()
+
+
+
 
 
 
