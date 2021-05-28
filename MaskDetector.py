@@ -156,4 +156,5 @@ class MaskDetector(object):
             # frame
             print("Not Headless")
             cv2.imshow("Frame", frame)
+            key = cv2.waitKey(1) & 0xFF
             return label
