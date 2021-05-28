@@ -5,6 +5,7 @@ import MaskDetector
 import OuterHandReader
 import os
 from time import sleep
+import controller
 
 HAND_APPROVED = 1
 HAND_DENIED =0
