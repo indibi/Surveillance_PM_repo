@@ -50,7 +50,7 @@ def main():
                 result = MD.detect_mask()
                 if result == "Mask":
                     print("Greetings. The door is unlocked.")
-                    controller.STATE = controller.UNLOCKED
+                    #controller.STATE = controller.UNLOCKED
                     B.positiveresponse()
                     door.entrance()
                 elif result == "ImproperMask":
@@ -59,7 +59,7 @@ def main():
                 else:
                     print("You do not have a mask on! Please leave the door front area!")
                     B.ringerror()
-                    controller.STATE = controller.LOCKED
+                    #controller.STATE = controller.LOCKED
 
         sleep(5)
 if __name__ == '__main__':
