@@ -43,6 +43,7 @@ class MaskDetector(object):
         while True:
             while self.videoOn:
                 a = self.detect_mask()
+                print(a)
                 self.lastlabelLock.acquire()
                 self.lastlabel = a
                 self.lastlabelLock.release()
