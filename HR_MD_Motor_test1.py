@@ -53,7 +53,7 @@ def main():
                     #controller.STATE = controller.UNLOCKED
                     B.positiveresponse()
                     door.entrance()
-                elif result == "ImproperMask":
+                elif result == "Improper Mask":
                     print("Please wear your mask properly. When you do, have your hand measured again. Thank you!")
                     B.ringwarning()
                 else:
