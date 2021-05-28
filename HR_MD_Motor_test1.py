@@ -5,12 +5,6 @@ import MaskDetector
 import OuterHandReader
 import os
 from time import sleep
-LOCKED = -10
-UNLOCKED = 100
-VERIFICATION = 10
-DORMANT = 50
-DENIED = 27
-STATE = DORMANT
 
 HAND_APPROVED = 1
 HAND_DENIED =0
@@ -32,30 +26,30 @@ def main():
     print("Door Initialized!")
     B = Buzzer(33)
 
-    global STATE
+
 
     while True:
-        global STATE = DORMANT
-        while STATE == DORMANT:
+        controller.STATE = controller.DORMANT
+        while controller.STATE == controller.DORMANT:
             if (ExitHR.read()):
-                global STATE = UNLOCKED
+                controller.STATE = controller.UNLOCKED
                 print("The door is unlocked!")
                 B.positiveresponse()
                 door.exit()
                 sleep(1)
             sleep(0.1)
 
-        global STATE = VERIFICATION
+        controller.STATE = controller.VERIFICATION
         print("Verification state")
         MD.start_display()
-        while STATE == VERIFICATION:
+        while controller.STATE == controller.VERIFICATION:
             result = EntryHR.read()
             if(HAND_APPROVED == result):
                 print("Checking face mask.")
                 result = MD.detect_mask()
                 if result == "Mask":
                     print("Greetings. The door is unlocked.")
-                    STATE = UNLOCKED
+                    controller.STATE = UNLOCKED
                     B.positiveresponse()
                     door.entrance()
                 elif result == "ImproperMask":
@@ -64,7 +58,7 @@ def main():
                 else:
                     print("You do not have a mask on! Please leave the door front area!")
                     B.ringerror()
-                    STATE = LOCKED
+                    controller.STATE = LOCKED
 
         sleep(5)
 if __name__ == '__main__':
