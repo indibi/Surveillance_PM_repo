@@ -111,7 +111,8 @@ class MaskDetector(object):
             # in the above `for` loop
             faces = np.array(faces, dtype="float32")
             preds = self.maskNet.predict(faces, batch_size=32)
-
+            print(preds)
+            
         for (box, pred) in zip(locs, preds):
             # unpack the bounding box and predictions
             (startX, startY, endX, endY) = box
