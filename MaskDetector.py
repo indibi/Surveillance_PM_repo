@@ -62,6 +62,7 @@ class MaskDetector(object):
             print("""Warning, the video stream was stopped earlier but mask detection is asked.
             Attempting to start the video stream.""")
 
+        label = None
         # grab the dimensions of the frame and then construct a blob from it
         frame = imutils.resize( self.videoStream.read(), width=400)
         (h,w) = frame.shape[:2]
