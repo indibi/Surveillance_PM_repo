@@ -22,7 +22,7 @@ class ExitHandReader(object):
             #print(f"Distance = {dist}")
             # Hand is within range
         if(dist <= 8) or (count==60):
-            print("Finished")
+            #print("Finished")
             if (count!=60):
                 print("Object in range")
                 print(f"Distance = {dist:0.2f} cm")

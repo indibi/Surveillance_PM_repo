@@ -59,7 +59,7 @@ def main():
                 else:
                     print("You do not have a mask on! Please leave the door front area!")
                     B.ringerror()
-                    controller.STATE = LOCKED
+                    controller.STATE = controller.LOCKED
 
         sleep(5)
 if __name__ == '__main__':

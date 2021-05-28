@@ -57,7 +57,7 @@ class HCSR_04(object):
 
 	def set_temp(self,temp):
 		self.ambient_temp = temp
-		print(f"Ambient temperature is {temp:.2f}C")
+		#print(f"Ambient temperature is {temp:.2f}C")
 
 	def __del__(self):
 		gpio.cleanup((self.trig_pin, self.echo_pin))
@@ -107,7 +107,7 @@ def main():
             Testes.append(Teste)
             Testcs.append(Testc)
             Testds.append(Testd)
-            
+
 
         meane =[]
         maxe =[]

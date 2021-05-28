@@ -13,15 +13,14 @@ from time import sleep
 
 class MaskDetector(object):
 
-    def __init__(self, confidence=0.5 ,v_src=0, **kwargs):
+    def __init__(self, confidence=0.5 , headless = True,v_src=0, **kwargs):
         kwargs.setdefault('proto','./face_detector/deploy.prototxt')
         kwargs.setdefault('face','./face_detector/res10_300x300_ssd_iter_140000.caffemodel')
         kwargs.setdefault('model','./face_mask_detector.model')
-        kwargs.setdefault('headless', True)
         prototxtPath = kwargs['proto']
         weightsPath = kwargs['face']
         model_path = kwargs['model']
-        self.isHeadless = kwargs['headless']
+        self.isHeadless = headless
         self.faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
         self.maskNet = load_model(model_path)
         self.videoStream = VideoStream(src=v_src)
