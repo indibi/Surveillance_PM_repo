@@ -31,7 +31,7 @@ class MaskDetector(object):
             self.displayThread.start()
 
     def start_display(self):
-        self.start_display = True
+        self.videoOn = True
         return self.videoStream.start()
 
     def stop_display(self):

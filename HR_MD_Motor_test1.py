@@ -50,7 +50,7 @@ def main():
                 result = MD.detect_mask()
                 if result == "Mask":
                     print("Greetings. The door is unlocked.")
-                    controller.STATE = UNLOCKED
+                    controller.STATE = controller.UNLOCKED
                     B.positiveresponse()
                     door.entrance()
                 elif result == "ImproperMask":
