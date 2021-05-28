@@ -154,6 +154,5 @@ class MaskDetector(object):
             # display the label and bounding box rectangle on the output
             # frame
             print("Not Headless")
-
             cv2.imshow("Frame", frame)
             return label
