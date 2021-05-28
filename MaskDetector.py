@@ -33,9 +33,9 @@ class MaskDetector(object):
         self.displayThread = threading.Thread(target=self.video_stream)
         self.displayThread.start()
 
-        self.image = cv2.imread(stock_image)
-        orig = self.image.copy()
-        (h, w) = self.image.shape[:2]
+        image = cv2.imread(stock_image)
+        orig = image.copy()
+        (h, w) = image.shape[:2]
         blob = cv2.dnn.blobFromImage(image, 1.0, (300, 300),
             (104.0, 177.0, 123.0))
         self.faceNet.setInput(blob)
