@@ -72,6 +72,7 @@ class PeopleCounter(object):
         t = time.time()
         if(channel==self.BB1.BB_out):   ## If the trigger was outer pin
             (x,y) = self.BB1.BB_t_IN
+            print("BB1-out")
             if(x):                          ## If inner beam was already broken
                 if((t-y)<1):                    ## If the timing was right. A person left entrance
                     self.LOCK.acquire_lock()        ## Get mutex of people counts
@@ -88,8 +89,8 @@ class PeopleCounter(object):
                 self.BB1.BB_t_OUT=(1,t)
 
         if(channel==self.BB1.BB_in): ## If the trigger was inner pin
-            t = time.time()
             (x,y) = self.BB1_t_OUT
+            print("BB1-in")
             if(x):          ## If outer beam was already broken
                 if((t-y)<1):     ## Timing was right. A person entered entrance
                     self.LOCK.acquire_lock()
