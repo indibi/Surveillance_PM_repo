@@ -105,7 +105,7 @@ class PeopleCounter(object):
                 self.BB1.BB_t_IN =(1,t)
                 self.BB1.BB_t_OUT=(0,t)
 
-        self.BB1.LOCK.LOCK.release_lock()
+        self.BB1.LOCK.release_lock()
 
 # def main():
 #     X = PeopleCounter(19,21)
