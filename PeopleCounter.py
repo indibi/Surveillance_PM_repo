@@ -28,7 +28,7 @@ class PeopleCounter(object):
         self.LOCK = threading.Lock()
 
     def break_2(self, channel):
-        self.BB2.LOCK.acquire_lock()
+        #self.BB2.LOCK.acquire_lock()
         t = time.time()
         if(channel==self.BB2.BB_out): ## If the trigger was outer pin
             x,y = self.BB2.BB_t_IN  ## get the last flag records
@@ -67,10 +67,10 @@ class PeopleCounter(object):
             else:                       ## If the outer pin wasnt previously broken
                 self.BB2.BB_t_IN=(1,t)
                 self.BB2.BB_t_OUT=(0,t) ## Record the event with timestamp
-        self.BB2.LOCK.release_lock() ## Release the clock locks
+        #self.BB2.LOCK.release_lock() ## Release the clock locks
 
     def break_1(self, channel):
-        self.BB1.LOCK.acquire_lock()
+        #self.BB1.LOCK.acquire_lock()
         t = time.time()
         if(channel==self.BB1.BB_out):   ## If the trigger was outer pin
             (x,y) = self.BB1.BB_t_IN
@@ -108,7 +108,7 @@ class PeopleCounter(object):
                 self.BB1.BB_t_IN =(1,t)
                 self.BB1.BB_t_OUT=(0,t)
 
-        self.BB1.LOCK.release_lock()
+        #self.BB1.LOCK.release_lock()
 
 # def main():
 #     X = PeopleCounter(19,21)
