@@ -28,17 +28,17 @@ class PeopleCounter(object):
         self.LOCK = threading.Lock()
 
     def break_2(self, channel):
-        #self.BB2.LOCK.acquire_lock()
+        self.BB2.LOCK.acquire_lock()
         t = time.time()
         if(channel==self.BB2.BB_out): ## If the trigger was outer pin
             x,y = self.BB2.BB_t_IN  ## get the last flag records
             print("BB2 out")
             if(x):                      ## If the inner beam was already broken
                 if((t-y)<1):                ## If the timing was right. A person exited the building
-                    #self.LOCK.acquire_lock()   ## Get the mutex of people counters
+                    self.LOCK.acquire_lock()   ## Get the mutex of people counters
                     self.people_inside -= 1    ## Decrement inside counter
                     self.people_entrance +=1   ## Increment the entrance counter
-                    #self.LOCK.release_lock()   ## Release the mutex of people counters
+                    self.LOCK.release_lock()   ## Release the mutex of people counters
                     print(f"Someone exit the building! Inside count={self.people_inside}, Outside count={self.people_entrance}")
                     self.BB2.BB_t_IN=(0,t)     ## Clear the flags after count
                     self.BB2.BB_t_OUT=(0,t)
@@ -54,11 +54,11 @@ class PeopleCounter(object):
             print("BB2 in")
             if(x):                      ## If the outer pin was already broken
                 if((t-y)<1):                ## If the timing was right A person entered the building
-                    #self.LOCK.acquire_lock()
+                    self.LOCK.acquire_lock()
                     self.people_inside +=1
                     self.people_entrance-=1
                     print(f"Someone entered the building! Inside count={self.people_inside}, Outside count={self.people_entrance}")
-                    #self.LOCK.release_lock()
+                    self.LOCK.release_lock()
                     self.BB2.BB_t_IN=(0,t)     ## Clear the flags after count
                     self.BB2.BB_t_OUT=(0,t)
                 else:                       ## If the set inner beam was too old, ignore it and refresh the flags
@@ -67,20 +67,20 @@ class PeopleCounter(object):
             else:                       ## If the outer pin wasnt previously broken
                 self.BB2.BB_t_IN=(1,t)
                 self.BB2.BB_t_OUT=(0,t) ## Record the event with timestamp
-        #self.BB2.LOCK.release_lock() ## Release the clock locks
+        self.BB2.LOCK.release_lock() ## Release the clock locks
 
     def break_1(self, channel):
-        #self.BB1.LOCK.acquire_lock()
+        self.BB1.LOCK.acquire_lock()
         t = time.time()
         if(channel==self.BB1.BB_out):   ## If the trigger was outer pin
             (x,y) = self.BB1.BB_t_IN
             print("BB1-out")
             if(x):                          ## If inner beam was already broken
                 if((t-y)<1):                    ## If the timing was right. A person left entrance
-                    #self.LOCK.acquire_lock()        ## Get mutex of people counts
+                    self.LOCK.acquire_lock()        ## Get mutex of people counts
                     self.people_entrance -=1
                     print(f"Someone left entrance area! People inside count={self.people_inside}, People at entrance count={self.people_entrance}")
-                    #self.LOCK.release_lock()        ## Release mutex of people counts
+                    self.LOCK.release_lock()        ## Release mutex of people counts
                     self.BB1.BB_t_IN = (0,t)
                     self.BB1.BB_t_OUT=(0,t)
                 else:                       ## If the set inner beam flag was too old ignore it
@@ -95,10 +95,10 @@ class PeopleCounter(object):
             print("BB1-in")
             if(x):          ## If outer beam was already broken
                 if((t-y)<1):     ## Timing was right. A person entered entrance
-                    #self.LOCK.acquire_lock()
+                    self.LOCK.acquire_lock()
                     self.people_entrance+=1
                     print(f"Someone entered entrance area! People inside count={self.people_inside}, People at entrance count={self.people_entrance}")
-                    #self.LOCK.release_lock()
+                    self.LOCK.release_lock()
                     self.BB1.BB_t_IN = (0,t)
                     self.BB1.BB_t_OUT=(0,t)
                 else:       ## If outer beam flag was too old, ignore it
@@ -108,7 +108,7 @@ class PeopleCounter(object):
                 self.BB1.BB_t_IN =(1,t)
                 self.BB1.BB_t_OUT=(0,t)
 
-        #self.BB1.LOCK.release_lock()
+        self.BB1.LOCK.release_lock()
 
 # def main():
 #     X = PeopleCounter(19,21)
