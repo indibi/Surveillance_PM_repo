@@ -1,5 +1,6 @@
 import RPi.GPIO as gpio
 import time, math, threading, sys
+import controller
 
 class BreakBeam(object):
     def __init__(self, BB_in, BB_out, BB_callback):
@@ -104,7 +105,7 @@ class PeopleCounter(object):
                 self.BB1.BB_t_IN =(1,t)
                 self.BB1.BB_t_OUT=(0,t)
 
-        self.BB1_list_LOCK.release_lock()
+        self.BB1.LOCK.LOCK.release_lock()
 
 # def main():
 #     X = PeopleCounter(19,21)
