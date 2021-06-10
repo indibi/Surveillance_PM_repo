@@ -6,6 +6,7 @@ import ExitHandReader
 import MaskDetector
 import OuterHandReader
 import os
+import PeopleCounter
 from time import sleep, time
 import threading
 
@@ -26,15 +27,16 @@ EntryHR= OuterHandReader.OHandReader(12,18,1)
 print("Entry Hand Reader Initialized!")
 ExitHR = ExitHandReader.ExitHandReader(32,31)
 print("Exit Hand Reader Initialized!")
-MD = MaskDetector.MaskDetector(headless=False)
-print("Mask Detector Initialized!")
+
 door = Door()
 print("Door Initialized!")
 B = Buzzer(33)
 print("Buzzer Initialized!")
 PC = PeopleCounter.PeopleCounter(23,24,21,22)
 print("People Counter Initialized!")
-import PeopleCounter
+MD = MaskDetector.MaskDetector(headless=False)
+print("Mask Detector Initialized!")
+
 def main():
     try:
         os.nice(-15)
