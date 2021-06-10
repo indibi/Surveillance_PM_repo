@@ -1,7 +1,7 @@
 # Initiation of systems, objects and variables --
 from Buzzer import Buzzer
 from Door import Door
-import PeopleCounter as pc
+import PeopleCounter
 import ExitHandReader
 import MaskDetector
 import OuterHandReader
