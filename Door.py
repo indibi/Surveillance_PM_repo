@@ -17,6 +17,7 @@ class Door(object):
         self.door_thread = threading.Thread(target= self._thread_loop)
         self._order_list = 0
         self._order_lock = threading.Lock()
+        self.door_thread.start()
 
 
     def _open(self):

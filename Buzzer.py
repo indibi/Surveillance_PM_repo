@@ -11,6 +11,7 @@ class Buzzer(object):
         self.door_thread = threading.Thread(target= self._thread_loop)
         self._order_list = 0
         self._order_lock = threading.Lock()
+        self.door_thread.start()
 
     def positiveresponse(self):
         self._order_lock.acquire()
