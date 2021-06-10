@@ -69,3 +69,4 @@ class OHandReader(object):
 
 			count =0
 			time.sleep(0.2)
+import controller

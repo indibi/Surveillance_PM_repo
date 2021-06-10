@@ -84,4 +84,3 @@ class Buzzer(object):
 
     def __del__(self):
         gpio.cleanup(self.pin_number)
-import controller
