@@ -56,7 +56,7 @@ class Buzzer(object):
             elif a == 3:
                 self._ringerror()
             else:
-                time.sleep(0.4)
+                sleep(0.4)
 
     def _ringwarning(self):
         for i in range(3):
