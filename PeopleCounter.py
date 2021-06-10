@@ -101,7 +101,7 @@ class PeopleCounter(object):
                     self.LOCK.acquire_lock()
                     self.people_entrance+=1
                     print(f"Someone entered entrance area! People inside count={self.people_inside}, People at entrance count={self.people_entrance}")
-                    STATE_LOCK.acquire()
+                    controller.STATE_LOCK.acquire()
                     if controller.STATE == controller.UNLOCKED:
                         controller.STATE = controller.LOCKED
                         while (controller.door.close() ==0):
