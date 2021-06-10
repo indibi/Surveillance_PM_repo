@@ -70,9 +70,9 @@ class PeopleCounter(object):
         self.BB2.LOCK.release_lock() ## Release the clock locks
 
     def break_1(self, channel):
-        global STATE
-        global STATE_LOCK
-        global door
+        # global STATE
+        # global STATE_LOCK
+        # global door
         self.BB1.LOCK.acquire_lock()
         t = time.time()
         if(channel==self.BB1.BB_out):   ## If the trigger was outer pin
@@ -102,9 +102,9 @@ class PeopleCounter(object):
                     self.people_entrance+=1
                     print(f"Someone entered entrance area! People inside count={self.people_inside}, People at entrance count={self.people_entrance}")
                     STATE_LOCK.acquire()
-                    if STATE == UNLOCKED:
-                        STATE = LOCKED
-                        while (door.close() ==0):
+                    if controller.STATE == controller.UNLOCKED:
+                        controller.STATE = controller.LOCKED
+                        while (controller.door.close() ==0):
                             pass
 
                     self.LOCK.release_lock()
