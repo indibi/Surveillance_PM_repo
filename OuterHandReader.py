@@ -31,9 +31,11 @@ class OHandReader(object):
 		self.ProxSens= HCSR04.HCSR_04(trig_pin, echo_pin, self.IRSens.get_ambient())
 
 	def read(self):
+		global STATE
+		global VERIFICATION
 		self.ProxSens.set_temp(self.IRSens.get_ambient())
 		Temperature_list = []
-		while controller.STATE == controller.VERIFICATION:
+		while STATE == VERIFICATION:
 			dist = self.ProxSens.distance()
 			count =1
 			## Count counts the number of measurement trials that was done to
@@ -69,4 +71,3 @@ class OHandReader(object):
 
 			count =0
 			time.sleep(0.2)
-import controller
