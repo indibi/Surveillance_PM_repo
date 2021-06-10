@@ -1,12 +1,12 @@
 # Initiation of systems, objects and variables --
 from Buzzer import Buzzer
 from Door import Door
-import PeopleCounter
+
 import ExitHandReader
 import MaskDetector
 import OuterHandReader
 import os
-from time import sleep
+from time import sleep, time
 import threading
 
 LOCKED = -10
@@ -34,7 +34,7 @@ B = Buzzer(33)
 print("Buzzer Initialized!")
 PC = PeopleCounter.PeopleCounter(23,24,21,22)
 print("People Counter Initialized!")
-
+import PeopleCounter
 def main():
     try:
         os.nice(-15)
@@ -87,7 +87,7 @@ def main():
             STATE_LOCK.release()
 
         while tmp_state == UNLOCKED:
-            if (door.state_tmstmp-time.time()>5) and (door.state) and (PC.people_entrance == 0):
+            if (door.state_tmstmp-time()>5) and (door.state) and (PC.people_entrance == 0):
                 STATE_LOCK.acquire()
                 STATE = DORMANT
                 STATE_LOCK.release()
