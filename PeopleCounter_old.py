@@ -20,7 +20,7 @@ class BreakBeam(object):
 
 
 class PeopleCounter(object):
-    def __init__(self, BB1_in,BB1_out, BB2_in,BB2_out, func = None):
+    def __init__(self, BB1_in,BB1_out, BB2_in,BB2_out):
         self.BB1 = BreakBeam(BB1_in,BB1_out, self.break_1)
         self.BB2 = BreakBeam(BB2_in,BB2_out, self.break_2)
         self.people_inside=0
@@ -98,12 +98,6 @@ class PeopleCounter(object):
                     self.LOCK.acquire_lock()
                     self.people_entrance+=1
                     print(f"Someone entered entrance area! People inside count={self.people_inside}, People at entrance count={self.people_entrance}")
-                    controller.STATE_LOCK.acquire()
-                    if controller.STATE == controller.UNLOCKED:
-                        controller.STATE = controller.LOCKED
-                        while (controller.door.close() ==0):
-                            pass
-
                     self.LOCK.release_lock()
                     self.BB1.BB_t_IN = (0,t)
                     self.BB1.BB_t_OUT=(0,t)
