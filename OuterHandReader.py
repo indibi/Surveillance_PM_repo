@@ -3,7 +3,7 @@ from mlx90614 import MLX90614
 import time, random, os
 import HCSR04
 #import controller
-import HR_MD_Motor_test1
+#import HR_MD_Motor_test1
 #	HandReader = OHandReader(12,18,1)
 # def main():
 # 	try:
