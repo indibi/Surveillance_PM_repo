@@ -106,7 +106,7 @@ class PeopleCounter(object):
                         controller.STATE = controller.LOCKED
                         while (controller.door.close() ==0):
                             pass
-
+                    controller.STATE_LOCK.release()
                     self.LOCK.release_lock()
                     self.BB1.BB_t_IN = (0,t)
                     self.BB1.BB_t_OUT=(0,t)
