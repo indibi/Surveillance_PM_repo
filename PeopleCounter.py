@@ -1,6 +1,6 @@
 import RPi.GPIO as gpio
 import time, math, threading, sys
-
+import controller
 
 class BreakBeam(object):
     def __init__(self, BB_in, BB_out, BB_callback):
@@ -119,7 +119,7 @@ class PeopleCounter(object):
 
         self.BB1.LOCK.release_lock()
 
-import controller
+
 # def main():
 #     X = PeopleCounter(19,21)
 #     try:
