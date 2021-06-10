@@ -7,7 +7,6 @@ import MaskDetector
 import OuterHandReader
 import os
 from time import sleep
-import controller
 import threading
 
 LOCKED = -10
