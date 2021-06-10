@@ -10,32 +10,8 @@ import PeopleCounter
 from time import sleep, time
 import threading
 
-LOCKED = -10
-UNLOCKED = 100
-VERIFICATION = 10
-DORMANT = 50
-DENIED = 27
-STATE = DORMANT
-STATE_LOCK = threading.Lock()
 
-HAND_APPROVED = 1
-HAND_DENIED =0
-NOT_HAND = 2
-MAX_PEOPLE = 20
 
-EntryHR= OuterHandReader.OHandReader(12,18,1)
-print("Entry Hand Reader Initialized!")
-ExitHR = ExitHandReader.ExitHandReader(32,31)
-print("Exit Hand Reader Initialized!")
-
-door = Door()
-print("Door Initialized!")
-B = Buzzer(33)
-print("Buzzer Initialized!")
-PC = PeopleCounter.PeopleCounter(23,24,21,22)
-print("People Counter Initialized!")
-MD = MaskDetector.MaskDetector(headless=False)
-print("Mask Detector Initialized!")
 
 def main():
     try:
@@ -173,37 +149,30 @@ def main():
             STATE_LOCK.release()
 
 if __name__ == '__main__':
+    LOCKED = -10
+    UNLOCKED = 100
+    VERIFICATION = 10
+    DORMANT = 50
+    DENIED = 27
+    STATE = DORMANT
+    STATE_LOCK = threading.Lock()
+
+    HAND_APPROVED = 1
+    HAND_DENIED =0
+    NOT_HAND = 2
+    MAX_PEOPLE = 20
+
+    EntryHR= OuterHandReader.OHandReader(12,18,1)
+    print("Entry Hand Reader Initialized!")
+    ExitHR = ExitHandReader.ExitHandReader(32,31)
+    print("Exit Hand Reader Initialized!")
+
+    door = Door()
+    print("Door Initialized!")
+    B = Buzzer(33)
+    print("Buzzer Initialized!")
+    PC = PeopleCounter.PeopleCounter(23,24,21,22)
+    print("People Counter Initialized!")
+    MD = MaskDetector.MaskDetector(headless=False)
+    print("Mask Detector Initialized!")
     main()
-
-
-
-
-
-
-#code here
-
-
-#after this part infinity loop may be used
-#(these processes execute many times)
-
-
-# dormant state
-
-
-
-
-
-#verification state
-
-
-
-
-
-
-
-#deny state
-
-
-
-
-#unlock state
