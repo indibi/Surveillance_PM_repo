@@ -1,7 +1,7 @@
 # Initiation of systems, objects and variables --
 from Buzzer import Buzzer
 from Door import Door
-import PeopleCounter
+from PeopleCounter import PeopleCounter
 import ExitHandReader
 import MaskDetector
 import OuterHandReader
@@ -32,7 +32,7 @@ door = Door()
 print("Door Initialized!")
 B = Buzzer(33)
 print("Buzzer Initialized!")
-PC = PeopleCounter.PeopleCounter(23,24,21,22)
+PC = PeopleCounter(23,24,21,22)
 print("People Counter Initialized!")
 
 def main():
