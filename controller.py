@@ -62,8 +62,8 @@ def main():
     while True:
         STATE_LOCK.acquire()
         tmp_state = STATE
+        print(STATE)
         STATE_LOCK.release()
-
         while tmp_state == DORMANT:
             STATE_LOCK.acquire()
             if (STATE == DORMANT) and (PC.people_entrance >0):
@@ -89,7 +89,7 @@ def main():
             STATE_LOCK.release()
 
         while tmp_state == UNLOCKED:
-            if (door.state_tmstmp-time()>5) and (door.state) and (PC.people_entrance == 0):
+            if (time()-door.state_tmstmp>5) and (door.state) and (PC.people_entrance == 0):
                 STATE_LOCK.acquire()
                 STATE = DORMANT
                 STATE_LOCK.release()
