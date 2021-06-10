@@ -1,6 +1,6 @@
 import RPi.GPIO as gpio
 import time, math, threading, sys
-import controller
+from controller import STATE, STATE_LOCK, door 
 
 class BreakBeam(object):
     def __init__(self, BB_in, BB_out, BB_callback):
