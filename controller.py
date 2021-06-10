@@ -32,7 +32,7 @@ door = Door()
 print("Door Initialized!")
 B = Buzzer(33)
 print("Buzzer Initialized!")
-PC = PeopleCounter(23,24,21,22)
+PC = PeopleCounter.PeopleCounter(23,24,21,22)
 print("People Counter Initialized!")
 
 def main():
