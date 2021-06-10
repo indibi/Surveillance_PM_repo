@@ -119,6 +119,7 @@ class PeopleCounter(object):
 
         self.BB1.LOCK.release_lock()
 
+import controller
 # def main():
 #     X = PeopleCounter(19,21)
 #     try:
