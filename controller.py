@@ -171,7 +171,7 @@ if __name__ == '__main__':
     print("Door Initialized!")
     B = Buzzer(33)
     print("Buzzer Initialized!")
-    PC = PeopleCounter.PeopleCounter(23,24,21,22)
+    PC = PeopleCounter.PeopleCounter(23,24,21,22, func=door.close)
     print("People Counter Initialized!")
     MD = MaskDetector.MaskDetector(headless=False)
     print("Mask Detector Initialized!")
