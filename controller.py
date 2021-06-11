@@ -150,18 +150,31 @@ def main():
             STATE_LOCK.release()
 
 if __name__ == '__main__':
+    global LOCKED
+    global UNLOCKED
+    global VERIFICATION
+    global DORMANT
+    global DENIED
+    global STATE
+    global STATE_LOCK
+
+    global HAND_APPROVED
+    global HAND_DENIED
+    global NOT_HAND
+    global MAX_PEOPLE
+
     LOCKED = -10
     UNLOCKED = 100
     VERIFICATION = 10
     DORMANT = 50
     DENIED = 27
-    global STATE = DORMANT
-    global STATE_LOCK = threading.Lock()
+    STATE = DORMANT
+    STATE_LOCK = threading.Lock()
 
-    global HAND_APPROVED = 1
-    global HAND_DENIED =0
-    global NOT_HAND = 2
-    global MAX_PEOPLE = 20
+    HAND_APPROVED = 1
+    HAND_DENIED =0
+    NOT_HAND = 2
+    MAX_PEOPLE = 20
 
     EntryHR= OuterHandReader.OHandReader(12,18,1)
     print("Entry Hand Reader Initialized!")
