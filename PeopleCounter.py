@@ -108,7 +108,7 @@ class PeopleCounter(object):
                     print(f"Thread identity = {threading.get_ident()}")
                     self.STATE_LOCK.acquire()
                     print("State Lock acquired")
-                    print(f"State = {controller.STATE}")
+                    print(f"State = {self.STATE}")
                     if self.STATE == self.UNLOCKED:
                         self.STATE = self.LOCKED
                         while (controller.door.close() ==0):
