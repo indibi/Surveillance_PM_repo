@@ -26,77 +26,76 @@ def main():
     global door
     global B
     global PC
-    global STATE
-    global LOCKED
-    global UNLOCKED
-    global VERIFICATION
-    global DORMANT
-    global DENIED
+    # global STATE
+    # global LOCKED
+    # global UNLOCKED
+    # global VERIFICATION
+    # global DORMANT
+    # global DENIED
 
-    STATE = DORMANT
     print(f"Thread identity = {threading.get_ident()}")
     while True:
-        STATE_LOCK.acquire()
-        tmp_state = STATE
-        print(f"tmp_state = {STATE}")
-        STATE_LOCK.release()
-        while tmp_state == DORMANT:
-            STATE_LOCK.acquire()
-            if (STATE == DORMANT) and (PC.people_entrance >0):
-                STATE = VERIFICATION
-            STATE_LOCK.release_lock()
+        PC.STATE_LOCK.acquire()
+        tmp_state = PC.STATE
+        print(f"tmp_state = {PC.STATE}")
+        PC.STATE_LOCK.release()
+        while tmp_state == PC.DORMANT:
+            PC.STATE_LOCK.acquire()
+            if (PC.STATE == PC.DORMANT) and (PC.people_entrance >0):
+                PC.STATE = PC.VERIFICATION
+            PC.STATE_LOCK.release_lock()
 
             if(ExitHR.read()):
-                STATE_LOCK.acquire()
-                if STATE == DORMANT:
-                    STATE = UNLOCKED
-                    STATE_LOCK.release()
+                PC.STATE_LOCK.acquire()
+                if PC.STATE == PC.DORMANT:
+                    PC.STATE = PC.UNLOCKED
+                    PC.STATE_LOCK.release()
                     while ( B.positiveresponse() ==0):
                         pass
                     while (door.open() ==0):
                         pass
                     print("The door is unlocked!")
                 else:
-                    STATE_LOCK.release()
+                    PC.STATE_LOCK.release()
 
             sleep(0.1)
-            STATE_LOCK.acquire()
-            tmp_state = STATE
-            STATE_LOCK.release()
+            PC.STATE_LOCK.acquire()
+            tmp_state = PC.STATE
+            PC.STATE_LOCK.release()
 
-        while tmp_state == UNLOCKED:
+        while tmp_state == PC.UNLOCKED:
             if (time()-door.state_tmstmp>8) and (door.state) and (PC.people_entrance == 0):
-                STATE_LOCK.acquire()
-                STATE = DORMANT
-                STATE_LOCK.release()
+                PC.STATE_LOCK.acquire()
+                PC.STATE = PC.DORMANT
+                PC.STATE_LOCK.release()
                 door.close()
 
             sleep(0.1)
-            STATE_LOCK.acquire()
-            tmp_state = STATE
-            STATE_LOCK.release()
+            PC.STATE_LOCK.acquire()
+            tmp_state = PC.STATE
+            PC.STATE_LOCK.release()
 
-        while tmp_state == VERIFICATION:
+        while tmp_state == PC.VERIFICATION:
             print("State Verification")
-            STATE_LOCK.acquire()
-            if (STATE == VERIFICATION) and (PC.people_entrance >1):
-                STATE = LOCKED
-                STATE_LOCK.release()
-            elif (STATE == VERIFICATION) and (PC.people_inside > MAX_PEOPLE):
-                STATE = LOCKED
-                STATE_LOCK.release()
+            PC.STATE_LOCK.acquire()
+            if (PC.STATE == PC.VERIFICATION) and (PC.people_entrance >1):
+                PC.STATE = PC.LOCKED
+                PC.STATE_LOCK.release()
+            elif (PC.STATE == PC.VERIFICATION) and (PC.people_inside > MAX_PEOPLE):
+                PC.STATE = PC.LOCKED
+                PC.STATE_LOCK.release()
                 print("Too many people at the entrance. Please maintain social distancing.")
             else:
-                STATE_LOCK.release()
+                PC.STATE_LOCK.release()
                 result = EntryHR.read()
                 if(HAND_APPROVED == result):
                     print("Checking face mask.")
                     result = MD.last_label()
                     if result == "Mask":
                         print("Greetings. The door is unlocked.")
-                        STATE_LOCK.acquire()
-                        STATE = UNLOCKED
-                        STATE_LOCK.release()
+                        PC.STATE_LOCK.acquire()
+                        PC.STATE = PC.UNLOCKED
+                        PC.STATE_LOCK.release()
                         while (B.positiveresponse() ==0):
                             pass
                         while (door.open() ==0):
@@ -108,68 +107,55 @@ def main():
                     else:
                         print("You do not have a mask on! Please leave the door front area!")
                         # B.ringerror()
-                        STATE_LOCK.acquire()
-                        STATE = DENIED
-                        STATE_LOCK.release()
+                        PC.STATE_LOCK.acquire()
+                        PC.STATE = PC.DENIED
+                        PC.STATE_LOCK.release()
             sleep(0.1)
-            STATE_LOCK.acquire()
-            tmp_state = STATE
-            STATE_LOCK.release()
+            PC.STATE_LOCK.acquire()
+            tmp_state = PC.STATE
+            PC.STATE_LOCK.release()
 
 
-        while tmp_state == DENIED:
+        while tmp_state == PC.DENIED:
             if PC.people_entrance == 0:
-                STATE_LOCK.acquire()
-                STATE = DORMANT
-                STATE_LOCK.release()
+                PC.STATE_LOCK.acquire()
+                PC.STATE = PC.DORMANT
+                PC.STATE_LOCK.release()
             else:
                 while (B.ringwarning()==0):
                     pass
 
             sleep(0.1)
-            STATE_LOCK.acquire()
-            tmp_state = STATE
-            STATE_LOCK.release()
+            PC.STATE_LOCK.acquire()
+            tmp_state = PC.STATE
+            PC.STATE_LOCK.release()
 
-        while tmp_state == LOCKED:              ## >>  LOCKED STATE
+        while tmp_state == PC.LOCKED:              ## >>  LOCKED STATE
             if PC.people_entrance == 0:
-                STATE_LOCK.acquire()
-                STATE = DORMANT
-                STATE_LOCK.release()
+                PC.STATE_LOCK.acquire()
+                PC.STATE = PC.DORMANT
+                PC.STATE_LOCK.release()
             elif PC.people_entrance == 1:
-                STATE_LOCK.acquire()
-                STATE = VERIFICATION
-                STATE_LOCK.release()
+                PC.STATE_LOCK.acquire()
+                PC.STATE = PC.VERIFICATION
+                PC.STATE_LOCK.release()
             else:
                 while(B.ringerror()==0):
                     pass
 
             sleep(0.1)
-            STATE_LOCK.acquire()
-            tmp_state = STATE
-            STATE_LOCK.release()
+            PC.STATE_LOCK.acquire()
+            tmp_state = PC.STATE
+            PC.STATE_LOCK.release()
 
 if __name__ == '__main__':
-    global LOCKED
-    global UNLOCKED
-    global VERIFICATION
-    global DORMANT
-    global DENIED
-    global STATE
-    global STATE_LOCK
-
-    global HAND_APPROVED
-    global HAND_DENIED
-    global NOT_HAND
-    global MAX_PEOPLE
 
     LOCKED = -10
     UNLOCKED = 100
     VERIFICATION = 10
     DORMANT = 50
     DENIED = 27
-    STATE = DORMANT
-    STATE_LOCK = threading.Lock()
+
 
     HAND_APPROVED = 1
     HAND_DENIED =0
