@@ -103,12 +103,14 @@ class PeopleCounter(object):
                     print(f"Someone entered entrance area! People inside count={self.people_inside}, People at entrance count={self.people_entrance}")
                     print(f"Thread identity = {threading.get_ident()}")
                     controller.STATE_LOCK.acquire()
+                    print("State Lock acquired")
                     print(f"State = {controller.STATE}")
                     if controller.STATE == controller.UNLOCKED:
                         controller.STATE = controller.LOCKED
                         while (controller.door.close() ==0):
                             pass
                     controller.STATE_LOCK.release()
+                    print("State Lock released")
                     self.LOCK.release_lock()
                     self.BB1.BB_t_IN = (0,t)
                     self.BB1.BB_t_OUT=(0,t)
