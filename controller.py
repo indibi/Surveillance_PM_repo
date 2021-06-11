@@ -155,13 +155,13 @@ if __name__ == '__main__':
     VERIFICATION = 10
     DORMANT = 50
     DENIED = 27
-    STATE = DORMANT
-    STATE_LOCK = threading.Lock()
+    global STATE = DORMANT
+    global STATE_LOCK = threading.Lock()
 
-    HAND_APPROVED = 1
-    HAND_DENIED =0
-    NOT_HAND = 2
-    MAX_PEOPLE = 20
+    global HAND_APPROVED = 1
+    global HAND_DENIED =0
+    global NOT_HAND = 2
+    global MAX_PEOPLE = 20
 
     EntryHR= OuterHandReader.OHandReader(12,18,1)
     print("Entry Hand Reader Initialized!")
