@@ -34,7 +34,7 @@ def main():
     global DENIED
 
     STATE = DORMANT
-
+    print(f"Thread identity = {threading.get_ident()}")
     while True:
         STATE_LOCK.acquire()
         tmp_state = STATE
