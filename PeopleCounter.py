@@ -27,6 +27,7 @@ class PeopleCounter(object):
         self.people_entrance=0
         self.LOCK = threading.Lock()
 
+
     def break_2(self, channel):
         self.BB2.LOCK.acquire_lock()
         t = time.time()
@@ -70,9 +71,6 @@ class PeopleCounter(object):
         self.BB2.LOCK.release_lock() ## Release the clock locks
 
     def break_1(self, channel):
-        global controller.STATE
-        global controller.STATE_LOCK
-        global controller.door
         self.BB1.LOCK.acquire_lock()
         t = time.time()
         if(channel==self.BB1.BB_out):   ## If the trigger was outer pin
