@@ -33,7 +33,7 @@ def main():
     # global DORMANT
     # global DENIED
 
-    print(f"Thread identity = {threading.get_ident()}")
+    #print(f"Thread identity = {threading.get_ident()}")
     while True:
         PC.STATE_LOCK.acquire()
         tmp_state = PC.STATE
