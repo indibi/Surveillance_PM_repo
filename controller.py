@@ -117,13 +117,14 @@ def main():
 
 
         while tmp_state == PC.DENIED:
-            if PC.people_entrance == 0:
+            if PC.people_entrance > 0:
+                while (B.ringwarning()==0):
+                    pass
+            else:
+                print("Entrance cleared, going to Dormant state!")
                 PC.STATE_LOCK.acquire()
                 PC.STATE = PC.DORMANT
                 PC.STATE_LOCK.release()
-            else:
-                while (B.ringwarning()==0):
-                    pass
 
             sleep(0.1)
             PC.STATE_LOCK.acquire()
