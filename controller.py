@@ -38,7 +38,7 @@ def main():
     while True:
         STATE_LOCK.acquire()
         tmp_state = STATE
-        print(STATE)
+        print(f"tmp_state = {STATE}")
         STATE_LOCK.release()
         while tmp_state == DORMANT:
             STATE_LOCK.acquire()
@@ -65,7 +65,7 @@ def main():
             STATE_LOCK.release()
 
         while tmp_state == UNLOCKED:
-            if (time()-door.state_tmstmp>5) and (door.state) and (PC.people_entrance == 0):
+            if (time()-door.state_tmstmp>8) and (door.state) and (PC.people_entrance == 0):
                 STATE_LOCK.acquire()
                 STATE = DORMANT
                 STATE_LOCK.release()
@@ -77,6 +77,7 @@ def main():
             STATE_LOCK.release()
 
         while tmp_state == VERIFICATION:
+            print(f"State Verification")
             STATE_LOCK.acquire()
             if (STATE == VERIFICATION) and (PC.people_entrance >1):
                 STATE = LOCKED
