@@ -33,6 +33,13 @@ class PeopleCounter(object):
         self.DENIED = 27
         self.STATE = self.DORMANT
         self.STATE_LOCK = threading.Lock()
+        self.func = func
+
+    def _get_state(self):
+        self.STATE_LOCK.acquire()
+        tmp = self.STATE
+        self.STATE_LOCK.release()
+        return tmp
 
     def break_2(self, channel):
         self.BB2.LOCK.acquire_lock()
@@ -111,7 +118,7 @@ class PeopleCounter(object):
                     print(f"State = {self.STATE}")
                     if self.STATE == self.UNLOCKED:
                         self.STATE = self.LOCKED
-                        while (controller.door.close() ==0):
+                        while (func() ==0):
                             pass
                     self.STATE_LOCK.release()
                     print("State Lock released")

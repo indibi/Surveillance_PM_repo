@@ -162,8 +162,7 @@ if __name__ == '__main__':
     NOT_HAND = 2
     MAX_PEOPLE = 20
 
-    EntryHR= OuterHandReader.OHandReader(12,18,1)
-    print("Entry Hand Reader Initialized!")
+
     ExitHR = ExitHandReader.ExitHandReader(32,31)
     print("Exit Hand Reader Initialized!")
 
@@ -173,6 +172,8 @@ if __name__ == '__main__':
     print("Buzzer Initialized!")
     PC = PeopleCounter.PeopleCounter(23,24,21,22, func=door.close)
     print("People Counter Initialized!")
+    EntryHR= OuterHandReader.OHandReader(12,18,1, _get_state=PC._get_state)
+    print("Entry Hand Reader Initialized!")
     MD = MaskDetector.MaskDetector(headless=False)
     print("Mask Detector Initialized!")
     main()

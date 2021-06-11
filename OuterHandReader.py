@@ -25,17 +25,25 @@ NOT_HAND = 2
 
 class OHandReader(object):
 
-	def __init__(self, trig_pin, echo_pin, i2c_bus = 1):
+	def __init__(self, trig_pin, echo_pin, i2c_bus = 1, _get_state=None ):
 		self.bus = SMBus(i2c_bus)
 		self.IRSens = MLX90614(self.bus)
 		self.ProxSens= HCSR04.HCSR_04(trig_pin, echo_pin, self.IRSens.get_ambient())
+		self.VERIFICATION =10
 
-	def read(self):
+	def get_state(self):
 		global STATE
 		global VERIFICATION
+		if _get_state == None:
+			return STATE
+		else:
+			return _get_state() 
+
+	def read(self):
 		self.ProxSens.set_temp(self.IRSens.get_ambient())
 		Temperature_list = []
-		while STATE == VERIFICATION:
+		while self.get_state() == self.VERIFICATION:
+		while
 			dist = self.ProxSens.distance()
 			count =1
 			## Count counts the number of measurement trials that was done to
