@@ -77,7 +77,7 @@ def main():
             STATE_LOCK.release()
 
         while tmp_state == VERIFICATION:
-            print(f"State Verification")
+            print("State Verification")
             STATE_LOCK.acquire()
             if (STATE == VERIFICATION) and (PC.people_entrance >1):
                 STATE = LOCKED
