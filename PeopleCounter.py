@@ -26,7 +26,13 @@ class PeopleCounter(object):
         self.people_inside=0
         self.people_entrance=0
         self.LOCK = threading.Lock()
-
+        self.LOCKED = -10
+        self.UNLOCKED = 100
+        self.VERIFICATION = 10
+        self.DORMANT = 50
+        self.DENIED = 27
+        self.STATE = self.DORMANT
+        self.STATE_LOCK = threading.Lock()
 
     def break_2(self, channel):
         self.BB2.LOCK.acquire_lock()
@@ -99,15 +105,15 @@ class PeopleCounter(object):
                     self.LOCK.acquire_lock()
                     self.people_entrance+=1
                     print(f"Someone entered entrance area! People inside count={self.people_inside}, People at entrance count={self.people_entrance}")
-                    #print(f"Thread identity = {threading.get_ident()}")
-                    #controller.STATE_LOCK.acquire()
-                    #print("State Lock acquired")
+                    print(f"Thread identity = {threading.get_ident()}")
+                    self.STATE_LOCK.acquire()
+                    print("State Lock acquired")
                     print(f"State = {controller.STATE}")
-                    if controller.STATE == controller.UNLOCKED:
-                        controller.STATE = controller.LOCKED
+                    if self.STATE == self.UNLOCKED:
+                        self.STATE = self.LOCKED
                         while (controller.door.close() ==0):
                             pass
-                    #controller.STATE_LOCK.release()
+                    self.STATE_LOCK.release()
                     print("State Lock released")
                     self.LOCK.release_lock()
                     self.BB1.BB_t_IN = (0,t)
