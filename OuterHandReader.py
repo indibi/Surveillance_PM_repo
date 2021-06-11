@@ -31,10 +31,11 @@ class OHandReader(object):
 		self.ProxSens= HCSR04.HCSR_04(trig_pin, echo_pin, self.IRSens.get_ambient())
 		self.VERIFICATION =10
 		self._get_state = _get_state
+		
 	def get_state(self):
 		global STATE
 		global VERIFICATION
-		if _get_state == None:
+		if self._get_state == None:
 			return STATE
 		else:
 			return self._get_state()
