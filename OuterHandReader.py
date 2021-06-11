@@ -30,14 +30,14 @@ class OHandReader(object):
 		self.IRSens = MLX90614(self.bus)
 		self.ProxSens= HCSR04.HCSR_04(trig_pin, echo_pin, self.IRSens.get_ambient())
 		self.VERIFICATION =10
-
+		self._get_state = _get_state
 	def get_state(self):
 		global STATE
 		global VERIFICATION
 		if _get_state == None:
 			return STATE
 		else:
-			return _get_state()
+			return self._get_state()
 
 	def read(self):
 		self.ProxSens.set_temp(self.IRSens.get_ambient())
