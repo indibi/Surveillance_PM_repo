@@ -106,7 +106,7 @@ class PeopleCounter(object):
 
         if(channel==self.BB1.BB_in): ## If the trigger was inner pin
             (x,y) = self.BB1.BB_t_OUT
-            print("BB1-in")
+            #print("BB1-in")
             if(x):          ## If outer beam was already broken
                 if((t-y)<1):     ## Timing was right. A person entered entrance
                     self.LOCK.acquire_lock()
