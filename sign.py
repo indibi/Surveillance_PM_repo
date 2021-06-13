@@ -11,7 +11,7 @@ class sign(object):
     def fullErrorOn(self):
         self.full.light()
 
-    def fullErrorOff():
+    def fullErrorOff(self):
         self.full.putout()
 
     def highErrorOn(self):
