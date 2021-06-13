@@ -6,7 +6,7 @@ class sign(object):
         self.high = led(13)
         self.nomask =  led(15)
         self.immask = led(16)
-        self.okay = led(18)
+        self.okay = led(19)
 
     def fullErrorOn(self):
         self.full.light()
