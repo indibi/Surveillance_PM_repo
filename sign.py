@@ -30,7 +30,7 @@ class sign(object):
         self.immask.light()
 
     def imMaskErrorOff(self):
-        self.immask,.putout()
+        self.immask.putout()
 
     def okayOn(self):
         self.okay.light()
