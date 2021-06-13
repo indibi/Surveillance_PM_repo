@@ -68,14 +68,15 @@ class MaskDetector(object):
     def video_stream(self):
         while True:
             while self.videoOn:
-                a = self.detect_mask()
-                if a !=None:
-                    self.lastlabelLock.acquire()
-                    self.lastlabel = a
-                    self.lastlabelLock.release()
-                #else:
-                #    print("detect_mask returned None")
-                sleep(1)
+                try:
+                    a = self.detect_mask()
+                    if a !=None:
+                        self.lastlabelLock.acquire()
+                        self.lastlabel = a
+                        self.lastlabelLock.release()
+                except:
+                    pass
+                sleep(0.3)
             sleep(1)
 
     def last_label(self):
@@ -105,9 +106,6 @@ class MaskDetector(object):
         preds = []
         # loop over the detections
         for i in range(0, detections.shape[2]):
-            if detections.shape[2] ==0:
-                print("Weird bug")
-                break
             # extract the confidence (i.e., probability) associated with
             # the detection
             confidence = detections[0, 0, i, 2]
