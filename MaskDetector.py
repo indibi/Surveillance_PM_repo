@@ -73,8 +73,8 @@ class MaskDetector(object):
                     self.lastlabelLock.acquire()
                     self.lastlabel = a
                     self.lastlabelLock.release()
-                else:
-                    print("detect_mask returned None")
+                #else:
+                #    print("detect_mask returned None")
                 sleep(0.5)
             sleep(1)
 
@@ -174,8 +174,8 @@ class MaskDetector(object):
                 cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 
         if self.isHeadless:
-            print(labell)
-            print("Headless")
+            #print(labell)
+            #print("Headless")
             return label
         else:
             # display the label and bounding box rectangle on the output
