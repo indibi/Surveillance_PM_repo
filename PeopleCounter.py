@@ -13,7 +13,7 @@ class BreakBeam(object):
         gpio.setup(BB_in, gpio.IN)
         gpio.add_event_detect(BB_in, gpio.RISING, callback=BB_callback, bouncetime=50)
         gpio.setup(BB_out, gpio.IN)
-        gpio.add_event_detect(BB_out, gpio.RISING, callback=BB_callback)
+        gpio.add_event_detect(BB_out, gpio.RISING, callback=BB_callback, bouncetime=50)
 
     def __del__(self):
         gpio.cleanup((self.BB_in, self.BB_out))
