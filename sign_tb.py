@@ -1,7 +1,7 @@
 import sign
 from time import sleep
 
-result = sign()
+result = sign.sign()
 result.noMaskErrorOn()
 sleep(1)
 result.noMaskErrorOff()
