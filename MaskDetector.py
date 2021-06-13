@@ -103,9 +103,11 @@ class MaskDetector(object):
         faces = []
         locs = []
         preds = []
-
         # loop over the detections
         for i in range(0, detections.shape[2]):
+            if detections.shape[2] ==0:
+                print("Weird bug")
+                break
             # extract the confidence (i.e., probability) associated with
             # the detection
             confidence = detections[0, 0, i, 2]
