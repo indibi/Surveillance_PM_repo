@@ -75,8 +75,8 @@ class MaskDetector(object):
                         self.lastlabel = a
                         self.lastlabelLock.release()
                 except:
-                    pass
-                sleep(0.3)
+                    print("discarded frame")
+                sleep(0.4)
             sleep(1)
 
     def last_label(self):
