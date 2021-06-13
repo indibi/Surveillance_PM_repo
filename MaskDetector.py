@@ -170,13 +170,13 @@ class MaskDetector(object):
                 cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 
         if self.isHeadless:
-            #print(labell)
-            #print("Headless")
+            print(labell)
+            print("Headless")
             return label
         else:
             # display the label and bounding box rectangle on the output
             # frame
-            #print("Not Headless")
+            print("Not Headless")
             cv2.imshow("Frame", frame)
             key = cv2.waitKey(1) & 0xFF
             return label
