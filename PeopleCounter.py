@@ -117,7 +117,7 @@ class PeopleCounter(object):
                     print(f"State = {self.STATE}")
                     if self.STATE == self.UNLOCKED:
                         self.STATE = self.LOCKED
-                        while (func() ==0):
+                        while (self.func() ==0):
                             pass
                     self.STATE_LOCK.release()
                     print("State Lock released")
