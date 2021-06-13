@@ -1,7 +1,7 @@
 # Initiation of systems, objects and variables --
 from Buzzer import Buzzer
 from Door import Door
-
+import sign
 import ExitHandReader
 import MaskDetector
 import OuterHandReader
@@ -69,6 +69,7 @@ def main():
                 PC.STATE = PC.DORMANT
                 PC.STATE_LOCK.release()
                 door.close()
+                opsign.okayOff()
 
             sleep(0.1)
             PC.STATE_LOCK.acquire()
@@ -78,13 +79,16 @@ def main():
         while tmp_state == PC.VERIFICATION:
             print("State Verification")
             PC.STATE_LOCK.acquire()
-            if (PC.STATE == PC.VERIFICATION) and (PC.people_entrance >1):
-                PC.STATE = PC.LOCKED
-                PC.STATE_LOCK.release()
-            elif (PC.STATE == PC.VERIFICATION) and (PC.people_inside > MAX_PEOPLE):
+            if (PC.STATE == PC.VERIFICATION) and (PC.people_inside > MAX_PEOPLE):
                 PC.STATE = PC.LOCKED
                 PC.STATE_LOCK.release()
                 print("Too many people at the entrance. Please maintain social distancing.")
+            elif (PC.STATE == PC.VERIFICATION) and (PC.people_entrance >1):
+                PC.STATE = PC.LOCKED
+                PC.STATE_LOCK.release()
+            elif (PC.STATE == PC.VERIFICATION) and (PC.people_entrance ==0):
+                PC.STATE = PC.DORMANT
+                PC.STATE_LOCK.release()
             else:
                 PC.STATE_LOCK.release()
                 result = EntryHR.read()
@@ -100,16 +104,19 @@ def main():
                             pass
                         while (door.open() ==0):
                             pass
-
+                        opsign.okayOn()
                     elif result == "Improper Mask":
                         print("Please wear your mask properly. When you do, have your hand measured again. Thank you!")
                         B.ringwarning()
+                        opsign.imMaskErrorOn()
                     else:
                         print("You do not have a mask on! Please leave the door front area!")
+                        print(result)
                         # B.ringerror()
                         PC.STATE_LOCK.acquire()
                         PC.STATE = PC.DENIED
                         PC.STATE_LOCK.release()
+                        opsign.noMaskErrorOn()
             sleep(0.1)
             PC.STATE_LOCK.acquire()
             tmp_state = PC.STATE
@@ -177,4 +184,5 @@ if __name__ == '__main__':
     print("Entry Hand Reader Initialized!")
     MD = MaskDetector.MaskDetector(headless=False)
     print("Mask Detector Initialized!")
+    opsign = sign.sign()
     main()
