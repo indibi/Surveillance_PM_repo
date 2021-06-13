@@ -188,7 +188,7 @@ if __name__ == '__main__':
     print("People Counter Initialized!")
     EntryHR= OuterHandReader.OHandReader(12,18,1, _get_state=PC._get_state)
     print("Entry Hand Reader Initialized!")
-    MD = MaskDetector.MaskDetector(headless=False)
+    MD = MaskDetector.MaskDetector(headless=True)
     print("Mask Detector Initialized!")
     opsign = sign.sign()
     main()
