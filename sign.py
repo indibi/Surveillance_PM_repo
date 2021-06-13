@@ -5,7 +5,7 @@ class sign(object):
         self.full = led.led(11)
         self.high = led.led(13)
         self.nomask =  led.led(15)
-        self.immask = led.led(16)
+        self.immask = led.led(7)
         self.okay = led.led(19)
 
     def fullErrorOn(self):
