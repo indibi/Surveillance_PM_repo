@@ -75,7 +75,7 @@ class MaskDetector(object):
                     self.lastlabelLock.release()
                 #else:
                 #    print("detect_mask returned None")
-                sleep(0.5)
+                sleep(1)
             sleep(1)
 
     def last_label(self):
