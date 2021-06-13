@@ -83,4 +83,5 @@ class Buzzer(object):
 
 
     def __del__(self):
+        gpio.output(self.pin_number,gpio.HIGH)
         gpio.cleanup(self.pin_number)
