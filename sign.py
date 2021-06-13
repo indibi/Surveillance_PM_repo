@@ -2,11 +2,11 @@ import led
 
 class sign(object):
     def __init__(self):
-        self.full = led(11)
-        self.high = led(13)
-        self.nomask =  led(15)
-        self.immask = led(16)
-        self.okay = led(19)
+        self.full = led.led(11)
+        self.high = led.led(13)
+        self.nomask =  led.led(15)
+        self.immask = led.led(16)
+        self.okay = led.led(19)
 
     def fullErrorOn(self):
         self.full.light()
