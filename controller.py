@@ -100,15 +100,18 @@ def main():
                         PC.STATE_LOCK.acquire()
                         PC.STATE = PC.UNLOCKED
                         PC.STATE_LOCK.release()
+                        opsign.okayOn()
                         while (B.positiveresponse() ==0):
                             pass
                         while (door.open() ==0):
                             pass
-                        opsign.okayOn()
+
                     elif result == "Improper Mask":
                         print("Please wear your mask properly. When you do, have your hand measured again. Thank you!")
-                        B.ringwarning()
                         opsign.imMaskErrorOn()
+                        B.ringwarning()
+                        sleep(0.5)
+                        opsign.imMaskErrorOff()
                     else:
                         print("You do not have a mask on! Please leave the door front area!")
                         print(result)
@@ -129,6 +132,9 @@ def main():
                     pass
             else:
                 print("Entrance cleared, going to Dormant state!")
+                opsign.noMaskErrorOff()
+                opsign.highErrorOff()
+                opsign.fullErrorOff()
                 PC.STATE_LOCK.acquire()
                 PC.STATE = PC.DORMANT
                 PC.STATE_LOCK.release()
