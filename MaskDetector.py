@@ -33,6 +33,7 @@ class MaskDetector(object):
         self.lastlabelLock = threading.Lock()
         self.displayThread = threading.Thread(target=self.video_stream)
         self.displayThread.start()
+        self.start_display()
 
         image = cv2.imread(stock_image)
         orig = image.copy()
@@ -72,6 +73,8 @@ class MaskDetector(object):
                     self.lastlabelLock.acquire()
                     self.lastlabel = a
                     self.lastlabelLock.release()
+                else:
+                    print("detect_mask returned None")
                 sleep(0.5)
             sleep(1)
 
