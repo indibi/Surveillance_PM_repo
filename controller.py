@@ -15,7 +15,7 @@ def restart(channel):
     sleep(0.2)
     if gpio.input(channel) == gpio.LOW:
         print("Restarting!")
-        #os.system("shutdown /r /t 1")
+        os.system("shutdown /r /t 1")
 
 def main():
     try:
