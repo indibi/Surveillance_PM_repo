@@ -31,7 +31,7 @@ class OHandReader(object):
 		self.ProxSens= HCSR04.HCSR_04(trig_pin, echo_pin, self.IRSens.get_ambient())
 		self.VERIFICATION =10
 		self._get_state = _get_state
-		
+
 	def get_state(self):
 		global STATE
 		global VERIFICATION
@@ -64,10 +64,10 @@ class OHandReader(object):
 					Temperature_list.append(1.02* self.IRSens.get_object_1())
 					time.sleep(0.100)
 
-				max_temp = max(Temperature_list)
+				max_temp = max(Temperature_list) +3
 				print(f"Temperature reading: {max_temp}")
 				Temperature_list.clear()
-				if (37.5>max_temp>26):		# Hand temperature is eligible
+				if (37.5>max_temp>29):		# Hand temperature is eligible
 					print("Skin temperature approved!")
 					return HAND_APPROVED
 				elif(max_temp >=37.5):
