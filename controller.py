@@ -80,8 +80,9 @@ def main():
             print("State Verification")
             PC.STATE_LOCK.acquire()
             if (PC.STATE == PC.VERIFICATION) and (PC.people_inside > MAX_PEOPLE):
-                PC.STATE = PC.LOCKED
+                PC.STATE = PC.DENIED
                 PC.STATE_LOCK.release()
+                opsign.fullErrorOn()
                 print("Too many people at the entrance. Please maintain social distancing.")
             elif (PC.STATE == PC.VERIFICATION) and (PC.people_entrance >1):
                 PC.STATE = PC.LOCKED
