@@ -9,9 +9,12 @@ import os
 import PeopleCounter
 from time import sleep, time
 import threading
+import RPi.GPIO as gpio
 
-
-
+def restart(channel):
+    if gpio.input(channel) == gpio.LOW:
+        print("Restarting!")
+        #os.system("shutdown /r /t 1")
 
 def main():
     try:
@@ -177,6 +180,10 @@ if __name__ == '__main__':
     NOT_HAND = 2
     MAX_PEOPLE = 2
 
+    restart_button = 40
+    gpio.setmode(gpio.BOARD)
+    GPIO.setup(restart_button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.add_event_detect(channel, GPIO.RISING, callback= restart, bouncetime=200)
 
     ExitHR = ExitHandReader.ExitHandReader(32,31)
     print("Exit Hand Reader Initialized!")
@@ -192,6 +199,6 @@ if __name__ == '__main__':
     MD = MaskDetector.MaskDetector(headless=False)
     print("Mask Detector Initialized!")
     opsign = sign.sign()
-    
+
 
     main()
