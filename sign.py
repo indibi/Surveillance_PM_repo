@@ -1,4 +1,5 @@
 import led
+from time import sleep
 
 class sign(object):
     def __init__(self):
