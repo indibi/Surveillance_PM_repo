@@ -26,6 +26,25 @@ class ExitHandReader(object):
             if (count!=60):
                 print("Object in range")
                 print(f"Distance = {dist:0.2f} cm")
+            else:
+                #print("Kimse yok ben kacar")
+                return NO_OPEN_GATE
+
+        dist = self.ProxSens.distance()
+        count =1
+        while((dist>=400) or (dist<2.5)):
+            count = count+1
+            time.sleep(0.01)
+            dist = self.ProxSens.distance()
+            if count == 60:
+                break
+            #print(f"Distance = {dist}")
+            # Hand is within range
+        if(dist <= 8) or (count==60):
+            #print("Finished")
+            if (count!=60):
+                print("Object in range")
+                print(f"Distance = {dist:0.2f} cm")
                 return OPEN_GATE
             else:
                 #print("Kimse yok ben kacar")
