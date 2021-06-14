@@ -174,7 +174,7 @@ if __name__ == '__main__':
     HAND_APPROVED = 1
     HAND_DENIED =0
     NOT_HAND = 2
-    MAX_PEOPLE = 20
+    MAX_PEOPLE = 2
 
 
     ExitHR = ExitHandReader.ExitHandReader(32,31)
