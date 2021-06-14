@@ -7,4 +7,4 @@
 
 mkdir /home/pi/.config/autostart
 cd /home/pi/.config/autostart/
-{ echo "[Desktop Entry]" ; echo "Type=Application" ; echo "Name=Survaillance-Protective_Measures" ; echo "Exec=/usr/bin/python3 /home/pi/project/Survaillance_PM_repo/controller.py" ; } >>survaillance.desktop
+{ echo "[Desktop Entry]" ; echo "Type=Application" ; echo "Name=Survaillance-Protective_Measures" ; echo "Exec=/usr/bin/python3 /home/pi/project/Survaillance_PM_repo/controller.py" ; } >> survaillance.desktop
