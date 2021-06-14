@@ -182,8 +182,8 @@ if __name__ == '__main__':
 
     restart_button = 40
     gpio.setmode(gpio.BOARD)
-    GPIO.setup(restart_button, gpio.IN, pull_up_down=gpio.PUD_UP)
-    GPIO.add_event_detect(channel, gpio.RISING, callback= restart, bouncetime=200)
+    gpio.setup(restart_button, gpio.IN, pull_up_down=gpio.PUD_UP)
+    gpio.add_event_detect(channel, gpio.RISING, callback= restart, bouncetime=200)
 
     ExitHR = ExitHandReader.ExitHandReader(32,31)
     print("Exit Hand Reader Initialized!")
