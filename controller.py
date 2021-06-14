@@ -12,7 +12,7 @@ import threading
 import RPi.GPIO as gpio
 
 def restart(channel):
-    time.sleep(0.2)
+    sleep(0.2)
     if gpio.input(channel) == gpio.LOW:
         print("Restarting!")
         #os.system("shutdown /r /t 1")
