@@ -163,7 +163,7 @@ while True:
 		if key == ord("q"):
 			break
 	except:
-		pass
+		print("Error!")
 # do a bit of cleanup
 cv2.destroyAllWindows()
 vs.stop()
