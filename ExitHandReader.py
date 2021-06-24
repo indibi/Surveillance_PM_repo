@@ -44,7 +44,7 @@ class ExitHandReader(object):
             if (count!=60):
                 print("Object in range")
                 print(f"Distance = {dist:0.2f} cm")
-                return OPEN_GATE
+            return OPEN_GATE
 
         else:
             #print("Kimse yok ben kacar")
