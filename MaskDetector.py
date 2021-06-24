@@ -17,7 +17,7 @@ class MaskDetector(object):
     def __init__(self, confidence=0.5 , headless = True,v_src=0, **kwargs):
         kwargs.setdefault('proto','./face_detector/deploy.prototxt')
         kwargs.setdefault('face','./face_detector/res10_300x300_ssd_iter_140000.caffemodel')
-        kwargs.setdefault('model','./face_mask_detector.model')
+        kwargs.setdefault('model','./mask_detector.model')
         kwargs.setdefault('stock','./stock_image.jpg')
         prototxtPath = kwargs['proto']
         weightsPath = kwargs['face']
