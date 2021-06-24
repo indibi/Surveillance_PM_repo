@@ -5,9 +5,9 @@
 ### Changelog ####
 # Confusion_matrix calculation added to last line
 # Dataset: "content/imagens" with 3 class
-# Batch_size: 32
+# Batch_size: 16
 # EPOCH : 20
-# Dense.relu : 128
+# Dense.relu : 256
 
 # import the necessary packages
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
