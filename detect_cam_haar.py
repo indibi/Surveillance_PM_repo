@@ -1,12 +1,12 @@
-import silence_tensorflow.auto
+#import silence_tensorflow.auto
 from tensorflow.python.keras.models import load_model
 import numpy as np
 import cv2
 
 
 
-keras_model = load_model('model.h5')
-cam = cv2.VideoCapture(0) 
+keras_model = load_model('./face_mask_detector.model')
+cam = cv2.VideoCapture(0)
 file_name = "haarcascade_frontalface_alt2.xml"
 classifier = cv2.CascadeClassifier(f"{cv2.haarcascades}/{file_name}")
 
@@ -26,8 +26,8 @@ while True:
 
     if cv2.waitKey(1) & 0xff == ord('q'):
         break
-    
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     faces = classifier.detectMultiScale(gray)
 
@@ -37,10 +37,10 @@ while True:
 
         if gray_face.shape[0] >= 200 and gray_face.shape[1] >= 200:
 
-            gray_face = cv2.resize(gray_face, (300, 300))
+            gray_face = cv2.resize(gray_face, (224, 224))
             gray_face = gray_face / 255
             gray_face = np.expand_dims(gray_face, axis=0)
-            gray_face = gray_face.reshape((1, 300, 300, 1))
+            gray_face = gray_face.reshape((1, 224, 224, 1))
             pred = np.argmax(keras_model.predict(gray_face))
             classification = label[pred]["name"]
             color = label[pred]["color"]
