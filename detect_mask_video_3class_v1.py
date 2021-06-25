@@ -43,6 +43,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 		if confidence > args["confidence"]:
 			# compute the (x, y)-coordinates of the bounding box for
 			# the object
+			print(f"detections = {detections[0, 0, i, 3:7]}")
 			box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
 			(startX, startY, endX, endY) = box.astype("int")
 
