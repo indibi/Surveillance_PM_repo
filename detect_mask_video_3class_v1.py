@@ -47,9 +47,9 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 			box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
 			(X1, Y1, X2, Y2) = box.astype("int")
 			startX = min(X1,X2)
-			endX = max(X1,X2)+50
+			endX = max(X1,X2)
 			startY= min(Y1,Y2)
-			endY=max(Y1,Y2)+50
+			endY=max(Y1,Y2)
 			# ensure the bounding boxes fall within the dimensions of
 			# the frame
 			(startX, startY) = (max(0, startX), max(0, startY))
