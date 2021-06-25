@@ -133,6 +133,7 @@ def main():
                         opsign.noMaskErrorOn()
             sleep(0.1)
             PC.STATE_LOCK.acquire()
+            print(f"Verification to >>> {PC.STATE}")
             tmp_state = PC.STATE
             PC.STATE_LOCK.release()
 
