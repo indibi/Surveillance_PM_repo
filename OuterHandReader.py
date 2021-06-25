@@ -55,7 +55,7 @@ class OHandReader(object):
 				if count == 60:
 					break
 
-			#print(f"Distance = {dist}")
+			print(f"Distance = {dist}")
 			if (dist <= 6) or (count==60): 	# Hand is within range
 				print("Object in range")
 				if count!=60:
