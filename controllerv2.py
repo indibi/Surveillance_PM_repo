@@ -33,7 +33,7 @@ def main():
 
 
     while True:
-
+        print("")
         result = EntryHR.read()
         print(f"Entry HR result = {result}")
         if(HAND_APPROVED == result):
@@ -64,6 +64,7 @@ def main():
             while (door.open() ==0):
                 pass
             print("The door is unlocked!")
+
             sleep(5)
             door.close()
 
