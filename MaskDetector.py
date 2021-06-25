@@ -46,11 +46,11 @@ class MaskDetector(object):
             confidence = detections[0, 0, i, 2]
             if confidence > 0.5:
                 box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
-    			(X1, Y1, X2, Y2) = box.astype("int")
-    			startX = min(X1,X2)-10
-    			endX = max(X1,X2)+10
-    			startY= min(Y1,Y2)-10
-    			endY=max(Y1,Y2)+10
+                (X1, Y1, X2, Y2) = box.astype("int")
+                startX = min(X1,X2)-10
+                endX = max(X1,X2)+10
+                startY= min(Y1,Y2)-10
+                endY=max(Y1,Y2)+10
                 (startX, startY) = (max(0, startX), max(0, startY))
                 (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
                 face = image[startY:endY, startX:endX]
@@ -120,11 +120,11 @@ class MaskDetector(object):
                 # compute the (x, y)-coordinates of the bounding box for
                 # the object
                 box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
-    			(X1, Y1, X2, Y2) = box.astype("int")
-    			startX = min(X1,X2)-10
-    			endX = max(X1,X2)+10
-    			startY= min(Y1,Y2)-10
-    			endY=max(Y1,Y2)+10
+                (X1, Y1, X2, Y2) = box.astype("int")
+                startX = min(X1,X2)-10
+                endX = max(X1,X2)+10
+                startY= min(Y1,Y2)-10
+                endY=max(Y1,Y2)+10
                 # ensure the bounding boxes fall within the dimensions of
                 # the frame
                 (startX, startY) = (max(0, startX), max(0, startY))
