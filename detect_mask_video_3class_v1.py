@@ -50,7 +50,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 			# the frame
 			(startX, startY) = (max(0, startX), max(0, startY))
 			(endX, endY) = (min(w - 1, endX), min(h - 1, endY))
-
+			print(f"(startX, startY) = ({startX},{startY}),(endX, endY) = ({endX},{endY})")
 			# extract the face ROI, convert it from BGR to RGB channel
 			# ordering, resize it to 224x224, and preprocess it
 			face = frame[startY:endY, startX:endX]
