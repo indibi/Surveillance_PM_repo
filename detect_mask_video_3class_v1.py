@@ -114,56 +114,54 @@ while True:
 
 	# detect faces in the frame and determine if they are wearing a
 	# face mask or not
-	try:
-		(locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
+	(locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
 
-		# loop over the detected face locations and their corresponding
-		# locations
-		for (box, pred) in zip(locs, preds):
-			# unpack the bounding box and predictions
-			(startX, startY, endX, endY) = box
-			(mask, maskImproper, withoutMask) = pred
+	# loop over the detected face locations and their corresponding
+	# locations
+	for (box, pred) in zip(locs, preds):
+		# unpack the bounding box and predictions
+		(startX, startY, endX, endY) = box
+		(mask, maskImproper, withoutMask) = pred
 
-			# determine the class label and color we'll use to draw
-			# the bounding box and text
-			#label = "Mask" if mask > withoutMask else "No Mask"
-			#color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
+		# determine the class label and color we'll use to draw
+		# the bounding box and text
+		#label = "Mask" if mask > withoutMask else "No Mask"
+		#color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
 
-			if mask > withoutMask :
-				if mask > maskImproper :
-					 label = "Mask"
-				else:
-					 label = "Improper Mask"
-			elif withoutMask > maskImproper :
-				label = "No Mask"
-			else :
-				label = "Improper Mask"
+		if mask > withoutMask :
+			if mask > maskImproper :
+				 label = "Mask"
+			else:
+				 label = "Improper Mask"
+		elif withoutMask > maskImproper :
+			label = "No Mask"
+		else :
+			label = "Improper Mask"
 
-			if label == "Mask" :
-				color = (0, 255, 0)
-			elif label == "Improper Mask" :
-				color = (0, 127, 127)
-			else :
-				color = (0, 0, 255)
+		if label == "Mask" :
+			color = (0, 255, 0)
+		elif label == "Improper Mask" :
+			color = (0, 127, 127)
+		else :
+			color = (0, 0, 255)
 
-			# include the probability in the label
-			label = "{}: {:.2f}%".format(label, max(mask, maskImproper, withoutMask) * 100)
+		# include the probability in the label
+		label = "{}: {:.2f}%".format(label, max(mask, maskImproper, withoutMask) * 100)
 
-			# display the label and bounding box rectangle on the output
-			# frame
-			cv2.putText(frame, label, (startX, startY - 10),
-				cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
-			cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
+		# display the label and bounding box rectangle on the output
+		# frame
+		cv2.putText(frame, label, (startX, startY - 10),
+			cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
+		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 
-		# show the output frame
-		cv2.imshow("Frame", frame)
-		key = cv2.waitKey(1) & 0xFF
+	# show the output frame
+	cv2.imshow("Frame", frame)
+	key = cv2.waitKey(1) & 0xFF
 
-		# if the `q` key was pressed, break from the loop
-		if key == ord("q"):
-			break
-	except:
-		print("Error!")
+	# if the `q` key was pressed, break from the loop
+	if key == ord("q"):
+		break
+
 # do a bit of cleanup
 cv2.destroyAllWindows()
 vs.stop()
