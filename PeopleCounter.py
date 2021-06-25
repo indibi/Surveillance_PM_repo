@@ -11,9 +11,9 @@ class BreakBeam(object):
         self.LOCK = threading.Lock()     ## Mutex lock for timer synchronization
         gpio.setmode(gpio.BOARD)
         gpio.setup(BB_in, gpio.IN)
-        gpio.add_event_detect(BB_in, gpio.RISING, callback=BB_callback, bouncetime=800)
+        gpio.add_event_detect(BB_in, gpio.RISING, callback=BB_callback, bouncetime=1000)
         gpio.setup(BB_out, gpio.IN)
-        gpio.add_event_detect(BB_out, gpio.RISING, callback=BB_callback, bouncetime=800)
+        gpio.add_event_detect(BB_out, gpio.RISING, callback=BB_callback, bouncetime=1000)
 
     def __del__(self):
         gpio.cleanup((self.BB_in, self.BB_out))
