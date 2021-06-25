@@ -189,7 +189,7 @@ if __name__ == '__main__':
     opsign = sign.sign()
     ExitHR = ExitHandReader.ExitHandReader(32,31)
     print("Exit Hand Reader Initialized!")
-    sign.okayOn()
+    opsign.okayOn()
     sleep(0.2)
     sign.okayOff()
     door = Door()
