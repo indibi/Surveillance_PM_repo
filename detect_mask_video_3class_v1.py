@@ -55,6 +55,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 			face = frame[startY:endY, startX:endX]
 			try:
 				face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+				print(face.size)
 			except:
 				print(face.size)
 			face = cv2.resize(face, (224, 224))
