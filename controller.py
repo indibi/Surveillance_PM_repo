@@ -44,6 +44,7 @@ def main():
         print(f"tmp_state = {PC.STATE}")
         PC.STATE_LOCK.release()
         while tmp_state == PC.DORMANT:
+            print("Dormant state")
             PC.STATE_LOCK.acquire()
             if (PC.STATE == PC.DORMANT) and (PC.people_entrance >0):
                 PC.STATE = PC.VERIFICATION
