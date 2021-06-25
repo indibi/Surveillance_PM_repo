@@ -59,6 +59,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 				print(f" try: face.size= {face.size}")
 			except:
 				print(f" except: face.size= {face.size}")
+				break
 			face = cv2.resize(face, (224, 224))
 			face = img_to_array(face)
 			face = preprocess_input(face)
