@@ -36,7 +36,7 @@ def main():
     # global VERIFICATION
     # global DORMANT
     # global DENIED
-
+    print(f"PC State is = {PC.STATE}, people_inside = {PC.people_inside}")
     #print(f"Thread identity = {threading.get_ident()}")
     while True:
         PC.STATE_LOCK.acquire()
