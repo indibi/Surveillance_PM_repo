@@ -11,6 +11,12 @@ from time import sleep, time
 import threading
 import RPi.GPIO as gpio
 
+def restart(channel):
+    sleep(0.2)
+    if gpio.input(channel) == gpio.LOW:
+        print("Restarting!")
+        os.system("sudo shutdown now --reboot")
+
 def main():
     try:
         os.nice(-15)
@@ -76,10 +82,10 @@ if __name__ == '__main__':
     NOT_HAND = 2
     MAX_PEOPLE = 2
 
-    # restart_button = 40
-    # gpio.setmode(gpio.BOARD)
-    # gpio.setup(restart_button, gpio.IN, pull_up_down=gpio.PUD_UP)
-    # gpio.add_event_detect(restart_button, gpio.RISING, callback= restart, bouncetime=200)
+    restart_button = 40
+    gpio.setmode(gpio.BOARD)
+    gpio.setup(restart_button, gpio.IN, pull_up_down=gpio.PUD_UP)
+    gpio.add_event_detect(restart_button, gpio.RISING, callback= restart, bouncetime=200)
 
     opsign = sign.sign()
     ExitHR = ExitHandReader.ExitHandReader(32,31)
