@@ -71,8 +71,8 @@ def main():
             PC.STATE_LOCK.release()
 
         while tmp_state == PC.UNLOCKED:
-            print("state unlocked")
-            if (time()-door.state_tmstmp>8) and (door.state) and (PC.people_entrance == 0):
+            #print("state unlocked")
+            if (time()-door.state_tmstmp>8) and  (PC.people_entrance == 0):
                 PC.STATE_LOCK.acquire()
                 print("unlocked to dormant")
                 PC.STATE = PC.DORMANT
