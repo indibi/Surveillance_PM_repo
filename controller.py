@@ -47,10 +47,12 @@ def main():
             print("Dormant state")
             PC.STATE_LOCK.acquire()
             if (PC.STATE == PC.DORMANT) and (PC.people_entrance >0):
+                print("dormant >> verification")
                 PC.STATE = PC.VERIFICATION
             PC.STATE_LOCK.release_lock()
 
             if(ExitHR.read()):
+                print("exitHR_dormant read")
                 PC.STATE_LOCK.acquire()
                 if PC.STATE == PC.DORMANT:
                     PC.STATE = PC.UNLOCKED
@@ -69,8 +71,10 @@ def main():
             PC.STATE_LOCK.release()
 
         while tmp_state == PC.UNLOCKED:
+            print("state unlocked")
             if (time()-door.state_tmstmp>8) and (door.state) and (PC.people_entrance == 0):
                 PC.STATE_LOCK.acquire()
+                print("unlocked to dormant")
                 PC.STATE = PC.DORMANT
                 PC.STATE_LOCK.release()
                 door.close()
@@ -98,6 +102,7 @@ def main():
             else:
                 PC.STATE_LOCK.release()
                 result = EntryHR.read()
+                print(f"Entry HR result = {result}")
                 if(HAND_APPROVED == result):
                     print("Checking face mask.")
                     result = MD.last_label()
