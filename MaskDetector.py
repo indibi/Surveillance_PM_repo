@@ -85,7 +85,7 @@ class MaskDetector(object):
                         self.lastlabellist.pop(0)
                     self.lastlabelLock.release()
 
-                sleep(0.3)
+                sleep(0.5)
             sleep(1)
 
     def last_label(self):
@@ -99,20 +99,19 @@ class MaskDetector(object):
             self.lastlabelLock.acquire()
             if len(self.lastlabellist) <5:
                 self.lastlabelLock.release()
-                sleep(0.2)
+                sleep(1)
             else:
                 improper_count = self.lastlabellist.count("Improper Mask")
                 proper_count = self.lastlabellist.count("Mask")
                 no_mask_count = self.lastlabellist.count("No Mask")
+                self.lastlabellist.clear()
+                self.lastlabelLock.release()
                 if improper_count >0:
                     a = "Improper Mask"
                 elif proper_count> no_mask_count:
                     a = "Mask"
                 else:
                     a = "No Mask"
-                self.lastlabellist.clear()
-                self.lastlabelLock.release()
-                sleep(0.2)
                 return a
 
     def detect_mask(self):
