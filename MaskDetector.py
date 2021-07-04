@@ -73,7 +73,10 @@ class MaskDetector(object):
     def video_stream(self):
         while True:
             while self.videoOn:
-                a = self.detect_mask()
+                try:
+                    a = self.detect_mask()
+                except:
+                    a=None
                 if a !=None:
                     self.lastlabelLock.acquire()
                     self.lastlabel = a
@@ -82,7 +85,7 @@ class MaskDetector(object):
                         self.lastlabellist.pop(0)
                     self.lastlabelLock.release()
 
-                sleep(0.2)
+                sleep(0.3)
             sleep(1)
 
     def last_label(self):
