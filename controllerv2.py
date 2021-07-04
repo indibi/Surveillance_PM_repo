@@ -11,12 +11,6 @@ from time import sleep, time
 import threading
 import RPi.GPIO as gpio
 
-def restart(channel):
-    sleep(0.2)
-    if gpio.input(channel) == gpio.LOW:
-        print("Restarting!")
-        os.system("sudo shutdown now --reboot")
-
 
 def main():
     try:
