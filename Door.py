@@ -5,7 +5,7 @@ import threading
 class Door(object):
     def __init__(self, pins=[35,36,37,38]): # pinler disaridan da set edilebiliyor ama defaultu bu
         self.pins = pins  #yanyana olan pinler (ayarlanabilir)
-        self.turn_number = 15 #dönme sayısı
+        self.turn_number = 14 #dönme sayısı
         self.fullstep_order =[[1,0,0,0], [1,1,0,0], [0,1,0,0], [0,1,1,0], [0,0,1,0], [0,0,1,1], [0,0,0,1], [1,0,0,1]]
         self.state = 0      # 0 = the door is  closed, 1 = the door is open
         self.state_tmstmp = time.time()
@@ -27,7 +27,7 @@ class Door(object):
             for fullstep in range(8):
                 for pin in range(4):
                     gpio.output(self.pins[pin],self.fullstep_order[fullstep][pin])
-                    time.sleep(0.01)
+                    time.sleep(0.005)
                 time.sleep(0.01)
 
     def _close(self):
@@ -37,7 +37,7 @@ class Door(object):
             for fullstep in range(8):
                 for pin in range(4):
                     gpio.output(self.pins[pin],self.fullstep_order[7-fullstep][pin])
-                    time.sleep(0.01)
+                    time.sleep(0.005)
                 time.sleep(0.01)
 
     def entrance(self):
