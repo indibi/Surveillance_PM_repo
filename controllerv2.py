@@ -31,7 +31,7 @@ def main():
     print("people_inside = 0")
     while True:
         result = EntryHR.read2()
-        print(f"Entry HR result = {result}")
+        #print(f"Entry HR result = {result}")
         if ((result == HAND_DENIED) or (result == HAND_APPROVED)) and (people_inside>3):
             opsign.fullErrorOn()
             B.ringerror()
@@ -53,6 +53,7 @@ def main():
                     sleep(6)
                     while (door.close() ==0):
                         pass
+                    opsign.okayOff()
 
                 elif result == "Improper Mask":
                     print("Please wear your mask properly. When you do, have your hand measured again. Thank you!")
@@ -68,7 +69,7 @@ def main():
                     while (B.ringerror() ==0):
                         pass
                     sleep(0.5)
-                    opsign.imMaskErrorOff()
+                    opsign.noMaskErrorOff()
 
         if(ExitHR.read()):
             while ( B.positiveresponse() ==0):
