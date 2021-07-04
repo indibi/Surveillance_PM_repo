@@ -6,7 +6,7 @@ class Door(object):
     def __init__(self, pins=[35,36,37,38]): # pinler disaridan da set edilebiliyor ama defaultu bu
         self.pins = pins  #yanyana olan pinler (ayarlanabilir)
         self.turn_number = 15 #dönme sayısı
-        self.fullstep_order =[[1,0,0,0],[0,0,1,0],[0,1,0,0],[0,0,0,1]]
+        self.fullstep_order =[[1,0,0,0],[1,1,0,0],[0,1,0,0],[0,1,1,0],[0,0,1,0],[0,0,1,1],[0,0,0,1], [1,0,0,1]]
         self.state = 0      # 0 = the door is  closed, 1 = the door is open
         self.state_tmstmp = time.time()
         gpio.setmode(gpio.BOARD)
@@ -24,8 +24,8 @@ class Door(object):
         self.state = 1
         self.state_tmstmp = time.time()
         for i in range(self.turn_number):
-            for fullstep in range(4):
-                for pin in range(4):
+            for fullstep in range(8):
+                for pin in range(8):
                     gpio.output(self.pins[pin],self.fullstep_order[fullstep][pin])
                     #time.sleep(0.002)
                 time.sleep(0.01)
@@ -36,7 +36,7 @@ class Door(object):
         for i in range(self.turn_number):
             for fullstep in range(4):
                 for pin in range(4):
-                    gpio.output(self.pins[pin],self.fullstep_order[3-fullstep][pin])
+                    gpio.output(self.pins[pin],self.fullstep_order[7-fullstep][pin])
                     #time.sleep(0.002)
                 time.sleep(0.01)
 
