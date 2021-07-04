@@ -105,7 +105,7 @@ if __name__ == '__main__':
     opsign = sign.sign()
     ExitHR = ExitHandReader.ExitHandReader(32,31)
     print("Exit Hand Reader Initialized!")
-    input()
+    input("EHR>>>>")
     opsign.okayOn()
     sleep(0.2)
     opsign.okayOff()
