@@ -27,7 +27,7 @@ class Door(object):
             for fullstep in range(8):
                 for pin in range(4):
                     gpio.output(self.pins[pin],self.fullstep_order[fullstep][pin])
-                    #time.sleep(0.002)
+                    time.sleep(0.002)
                 time.sleep(0.01)
 
     def _close(self):
@@ -37,7 +37,7 @@ class Door(object):
             for fullstep in range(8):
                 for pin in range(4):
                     gpio.output(self.pins[pin],self.fullstep_order[7-fullstep][pin])
-                    #time.sleep(0.002)
+                    time.sleep(0.002)
                 time.sleep(0.01)
 
     def entrance(self):
