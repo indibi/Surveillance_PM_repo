@@ -126,7 +126,7 @@ if __name__ == '__main__':
     #opsign.okayOn()
     #sleep(0.2)
     #opsign.okayOff()
-    EntryHR= OuterHandReader.OHandReader(12,18,1, _get_state=PC._get_state)
+    EntryHR= OuterHandReader.OHandReader(12,18,1, _get_state=None)
     print("Entry Hand Reader Initialized!")
     opsign.okayOn()
     sleep(0.2)
