@@ -11,24 +11,24 @@ class ExitHandReader(object):
     def read(self):
         dist = self.ProxSens.distance()
         count =1
-        ## Count counts the number of measurement trials that was done to
-        ## get a healthy reading. Unhealthy ones are discarded.
-        # while((dist>=400) or (dist<2.5)):
-        #     count = count+1
-        #     time.sleep(0.01)
-        #     dist = self.ProxSens.distance()
-        #     if count == 60:
+        # Count counts the number of measurement trials that was done to
+        # get a healthy reading. Unhealthy ones are discarded.
+        while((dist>=400) or (dist<2.5)):
+            count = count+1
+            time.sleep(0.01)
+            dist = self.ProxSens.distance()
+            if count == 60:
+                break
+            #print(f"Distance = {dist}")
+            # Hand is within range
+        if not((dist <= 8) or (count==60)):
+            return NO_OPEN_GATE
+            #print("Kimse yok ben kacar")
+        #     #print("Finished")
+        #     if (count!=60):
+        #         #print("Object in range")
+        #         #print(f"Distance = {dist:0.2f} cm")
         #         break
-        #     #print(f"Distance = {dist}")
-        #     # Hand is within range
-        # if not((dist <= 8) or (count==60)):
-        #     return NO_OPEN_GATE
-        #     #print("Kimse yok ben kacar")
-        # #     #print("Finished")
-        # #     if (count!=60):
-        # #         #print("Object in range")
-        # #         #print(f"Distance = {dist:0.2f} cm")
-        # #         break
         dist = self.ProxSens.distance()
         count =1
         while((dist>=400) or (dist<2.5)):
@@ -39,7 +39,7 @@ class ExitHandReader(object):
                 break
             #print(f"Distance = {dist}")
             # Hand is within range
-        if(dist <= 8) or (count==60):
+        if ((dist <= 8) or (count==60)):
             #print("Finished")
             if (count!=60):
                 print("Object in range")

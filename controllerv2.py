@@ -17,6 +17,7 @@ def restart(channel):
         print("Restarting!")
         os.system("sudo shutdown now --reboot")
 
+
 def main():
     try:
         os.nice(-15)
@@ -29,34 +30,48 @@ def main():
     global MD
     global door
     global B
-    global PC
+    global opsign
 
+    people_inside =0
 
     while True:
-        print("")
-        result = EntryHR.read()
+        result = EntryHR.read2()
         print(f"Entry HR result = {result}")
-        if(HAND_APPROVED == result):
-            print("Checking face mask.")
-            result = MD.last_label()
-            if result == "Mask":
-                print("Greetings. The door is unlocked.")
-                opsign.okayOn()
-                while (B.positiveresponse() ==0):
-                    pass
-                while (door.open() ==0):
-                    pass
+        if ((result == HAND_DENIED) or (result == HAND_APPROVED)) and people_inside>3):
+            opsign.fullErrorOn()
+            B.ringerror()
+            print("Full inside")
+        else:
+            if(HAND_APPROVED == result):
+                print("Checking face mask.")
+                result = MD.reliable_last_label()
+                if result == "Mask":
+                    print("Greetings. The door is unlocked.")
+                    people_inside+=1
+                    opsign.okayOn()
+                    while (B.positiveresponse() ==0):
+                        pass
+                    while (door.open() ==0):
+                        pass
+                    sleep(6)
+                    while (door.close() ==0):
+                        pass
 
-            elif result == "Improper Mask":
-                print("Please wear your mask properly. When you do, have your hand measured again. Thank you!")
-                opsign.imMaskErrorOn()
-                B.ringwarning()
-                sleep(0.5)
-                opsign.imMaskErrorOff()
-            else:
-                print("You do not have a mask on! Please leave the door front area!")
-                print(result)
-                opsign.noMaskErrorOn()
+                elif result == "Improper Mask":
+                    print("Please wear your mask properly. When you do, have your hand measured again. Thank you!")
+                    opsign.imMaskErrorOn()
+                    while (B.ringwarning() ==0):
+                        pass
+                    sleep(0.5)
+                    opsign.imMaskErrorOff()
+                else:
+                    print("You do not have a mask on! Please leave the door front area!")
+                    print(result)
+                    opsign.noMaskErrorOn()
+                    while (B.ringerror() ==0):
+                        pass
+                    sleep(0.5)
+                    opsign.imMaskErrorOff()
 
         if(ExitHR.read()):
             while ( B.positiveresponse() ==0):
@@ -64,9 +79,11 @@ def main():
             while (door.open() ==0):
                 pass
             print("The door is unlocked!")
-
-            sleep(5)
-            door.close()
+            if people_inside>0:
+                people_inside-=1
+            sleep(6)
+            while ( door.close() ==0):
+                pass
 
 
 if __name__ == '__main__':
@@ -104,11 +121,11 @@ if __name__ == '__main__':
     opsign.okayOn()
     sleep(0.2)
     opsign.okayOff()
-    PC = PeopleCounter.PeopleCounter(23,24,21,22, func=door.close)
-    print("People Counter Initialized!")
-    opsign.okayOn()
-    sleep(0.2)
-    opsign.okayOff()
+    #PC = PeopleCounter.PeopleCounter(23,24,21,22, func=door.close)
+    #print("People Counter Initialized!")
+    #opsign.okayOn()
+    #sleep(0.2)
+    #opsign.okayOff()
     EntryHR= OuterHandReader.OHandReader(12,18,1, _get_state=PC._get_state)
     print("Entry Hand Reader Initialized!")
     opsign.okayOn()

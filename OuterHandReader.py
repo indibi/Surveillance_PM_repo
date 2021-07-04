@@ -36,9 +36,46 @@ class OHandReader(object):
 		global STATE
 		global VERIFICATION
 		if self._get_state == None:
-			return STATE
+			return self.VERIFICATION
 		else:
 			return self._get_state()
+
+	def read2(self):
+		self.ProxSens.set_temp(self.IRSens.get_ambient())
+		Temperature_list = []
+		dist = self.ProxSens.distance()
+		count =1
+		## Count counts the number of measurement trials that was done to
+		## get a healthy reading. Unhealthy ones are discarded.
+		while((dist>=400) or (dist<2.5)):
+			count = count+1
+			time.sleep(0.01)
+			dist = self.ProxSens.distance()
+			if count == 60:
+				break
+
+		print(f"Distance = {dist}")
+		if (dist <= 6) or (count==60): 	# Hand is within range
+			print("Object in range")
+			if count!=60:
+				print(f"Distance = {dist}")
+			for x in range(5):			# Getting 5 temperature measurements
+				Temperature_list.append(1.02* self.IRSens.get_object_1())
+				time.sleep(0.100)
+
+			max_temp = max(Temperature_list) +3
+			print(f"Temperature reading: {max_temp}")
+			Temperature_list.clear()
+			if (37.5>max_temp>29):		# Hand temperature is eligible
+				print("Skin temperature approved!")
+				return HAND_APPROVED
+			elif(max_temp >=37.5):
+				print("Skin temperature denied!")
+				return HAND_DENIED
+			else:
+				print("Unknown object is obscuring the Entry Hand Reader!")
+				return NOT_HAND
+
 
 	def read(self):
 		self.ProxSens.set_temp(self.IRSens.get_ambient())
@@ -77,5 +114,4 @@ class OHandReader(object):
 					print("Unknown object is obscuring the Entry Hand Reader!")
 					return NOT_HAND
 
-			count =0
 			time.sleep(0.2)
