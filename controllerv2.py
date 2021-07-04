@@ -60,7 +60,7 @@ def main():
                     opsign.imMaskErrorOn()
                     while (B.ringwarning() ==0):
                         pass
-                    sleep(0.5)
+                    sleep(2)
                     opsign.imMaskErrorOff()
                 else:
                     print("You do not have a mask on! Please leave the door front area!")
@@ -68,7 +68,7 @@ def main():
                     opsign.noMaskErrorOn()
                     while (B.ringerror() ==0):
                         pass
-                    sleep(0.5)
+                    sleep(2)
                     opsign.noMaskErrorOff()
 
         if(ExitHR.read()):
@@ -106,7 +106,6 @@ if __name__ == '__main__':
     opsign = sign.sign()
     ExitHR = ExitHandReader.ExitHandReader(32,31)
     print("Exit Hand Reader Initialized!")
-    input("EHR>>>>")
     opsign.okayOn()
     sleep(0.2)
     opsign.okayOff()
