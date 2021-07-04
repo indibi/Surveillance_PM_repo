@@ -30,6 +30,7 @@ class MaskDetector(object):
         self.confidence = confidence
         self.videoOn = False
         self.lastlabel = None
+        self.lastlabellist = []
         self.lastlabelLock = threading.Lock()
         self.displayThread = threading.Thread(target=self.video_stream)
         self.displayThread.start()
@@ -72,16 +73,16 @@ class MaskDetector(object):
     def video_stream(self):
         while True:
             while self.videoOn:
-                try:
-                    a = self.detect_mask()
-                    if a !=None:
-                        self.lastlabelLock.acquire()
-                        self.lastlabel = a
-                        self.lastlabelLock.release()
-                except:
-                    pass
-                    #print("discarded frame")
-                sleep(0.3)
+                a = self.detect_mask()
+                if a !=None:
+                    self.lastlabelLock.acquire()
+                    self.lastlabel = a
+                    self.lastlabellist.append(a)
+                    while len(self.lastlabellist) > 5:
+                        self.lastlabellist.pop(0)
+                    self.lastlabelLock.release()
+
+                sleep(0.2)
             sleep(1)
 
     def last_label(self):
@@ -89,6 +90,26 @@ class MaskDetector(object):
         a = self.lastlabel
         self.lastlabelLock.release()
         return a
+
+    def reliable_last_label(self):
+        while True:
+            self.lastlabelLock.acquire()
+            if len(self.lastlabellist) <5:
+                self.lastlabelLock.release()
+                sleep(0.3)
+            else:
+                improper_count = self.lastlabellist.count("Improper Mask")
+                proper_count = self.lastlabellist.count("Mask")
+                no_mask_count = self.lastlabellist.count("No Mask")
+                if improper_count >0:
+                    a = "Improper Mask"
+                elif proper_count> no_mask_count:
+                    a = "Mask"
+                else:
+                    a = "No Mask"
+                self.lastlabellist.clear()
+                self.lastlabelLock.release()
+                return a
 
     def detect_mask(self):
         if self.videoStream.stream.stopped:
