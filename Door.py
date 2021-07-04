@@ -5,7 +5,7 @@ import threading
 class Door(object):
     def __init__(self, pins=[35,36,37,38]): # pinler disaridan da set edilebiliyor ama defaultu bu
         self.pins = pins  #yanyana olan pinler (ayarlanabilir)
-        self.turn_number = 50 #dönme sayısı
+        self.turn_number = 15 #dönme sayısı
         self.fullstep_order =[[1,0,0,0],[0,0,1,0],[0,1,0,0],[0,0,0,1]]
         self.state = 0      # 0 = the door is  closed, 1 = the door is open
         self.state_tmstmp = time.time()
