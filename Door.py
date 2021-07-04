@@ -34,8 +34,8 @@ class Door(object):
         self.state = 0
         self.state_tmstmp = time.time()
         for i in range(self.turn_number):
-            for fullstep in range(4):
-                for pin in range(4):
+            for fullstep in range(8):
+                for pin in range(8):
                     gpio.output(self.pins[pin],self.fullstep_order[7-fullstep][pin])
                     #time.sleep(0.002)
                 time.sleep(0.01)
