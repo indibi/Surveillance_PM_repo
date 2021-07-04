@@ -37,7 +37,7 @@ def main():
     while True:
         result = EntryHR.read2()
         print(f"Entry HR result = {result}")
-        if ((result == HAND_DENIED) or (result == HAND_APPROVED)) and people_inside>3):
+        if ((result == HAND_DENIED) or (result == HAND_APPROVED)) and (people_inside>3):
             opsign.fullErrorOn()
             B.ringerror()
             print("Full inside")
