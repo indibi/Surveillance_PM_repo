@@ -13,6 +13,7 @@ import RPi.GPIO as gpio
 
 
 def main():
+    print("inside main")
     try:
         os.nice(-15)
     except OSError:
@@ -27,7 +28,7 @@ def main():
     global opsign
 
     people_inside =0
-
+    print("people_inside = 0")
     while True:
         result = EntryHR.read2()
         print(f"Entry HR result = {result}")
@@ -35,6 +36,8 @@ def main():
             opsign.fullErrorOn()
             B.ringerror()
             print("Full inside")
+            sleep(2)
+            opsign.fullErrorOff()
         else:
             if(HAND_APPROVED == result):
                 print("Checking face mask.")
