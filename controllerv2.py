@@ -129,7 +129,7 @@ if __name__ == '__main__':
     opsign.okayOn()
     sleep(0.2)
     opsign.okayOff()
-    MD = MaskDetector.MaskDetector(headless=False)
+    MD = MaskDetector.MaskDetector(headless=True)
     print("Mask Detector Initialized!")
     opsign.okayOn()
     sleep(0.2)

@@ -104,7 +104,7 @@ class OHandReader(object):
 				max_temp = max(Temperature_list) +3
 				print(f"Temperature reading: {max_temp}")
 				Temperature_list.clear()
-				if (37.5>max_temp>29):		# Hand temperature is eligible
+				if (37.5>max_temp>31):		# Hand temperature is eligible
 					print("Skin temperature approved!")
 					return HAND_APPROVED
 				elif(max_temp >=37.5):
